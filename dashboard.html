@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard | CodeCollab</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="dashboard-page">
+    <!-- =====================================================
+         TOP NAVBAR
+    ====================================================== -->
+
+    <header class="dashboard-header border-bottom bg-white">
+      <div class="container-fluid px-3 px-lg-4">
+        <div
+          class="d-flex align-items-center justify-content-between gap-3 py-3"
+        >
+          <!-- Brand -->
+          <div class="d-flex align-items-center">
+            <!-- Mobile sidebar button -->
+            <button
+              class="btn btn-light d-lg-none me-2"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#dashboardSidebar"
+              aria-controls="dashboardSidebar"
+              aria-label="Open navigation"
+            >
+              <i class="bi bi-list fs-5"></i>
+            </button>
+
+            <a href="dashboard.html" class="text-decoration-none">
+              <img
+                src="assets/images/logo.png"
+                alt="CodeCollab"
+                class="dashboard-logo"
+              />
+            </a>
+          </div>
+
+          <!-- Search -->
+          <div class="dashboard-search flex-grow-1 d-none d-md-block">
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0">
+                <i class="bi bi-search text-muted"></i>
+              </span>
+
+              <input
+                type="search"
+                class="form-control bg-light border-start-0"
+                placeholder="Search posts, projects, people..."
+                aria-label="Search CodeCollab"
+              />
+            </div>
+          </div>
+
+          <!-- Right navigation -->
+          <div class="d-flex align-items-center gap-2">
+            <!-- Mobile search -->
+            <button
+              class="btn btn-light d-md-none"
+              type="button"
+              aria-label="Search"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Notifications -->
+            <button
+              class="btn btn-light position-relative"
+              type="button"
+              aria-label="Notifications"
+            >
+              <i class="bi bi-bell fs-5"></i>
+
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+              >
+                3
+              </span>
+            </button>
+
+            <!-- User -->
+            <div class="dropdown">
+              <button
+                class="btn btn-light d-flex align-items-center gap-2"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="dashboard-avatar">P</div>
+
+                <span class="d-none d-lg-inline fw-semibold" id="navUserName">
+                  Promise
+                </span>
+
+                <i class="bi bi-chevron-down small"></i>
+              </button>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                <li>
+                  <a class="dropdown-item" href="profile.html">
+                    <i class="bi bi-person me-2"></i>
+                    Profile
+                  </a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <i class="bi bi-gear me-2"></i>
+                    Settings
+                  </a>
+                </li>
+
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+
+                <li>
+                  <button
+                    class="dropdown-item text-danger"
+                    id="logoutBtn"
+                    type="button"
+                  >
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Log out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile search -->
+        <div class="d-md-none pb-3">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0">
+              <i class="bi bi-search text-muted"></i>
+            </span>
+
+            <input
+              type="search"
+              class="form-control bg-light border-start-0"
+              placeholder="Search posts, projects, people..."
+              aria-label="Search CodeCollab"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         DASHBOARD LAYOUT
+    ====================================================== -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside
+          class="offcanvas-lg offcanvas-start col-lg-2 dashboard-sidebar"
+          tabindex="-1"
+          id="dashboardSidebar"
+          aria-labelledby="dashboardSidebarLabel"
+        >
+          <!-- Mobile sidebar header -->
+          <div class="offcanvas-header d-lg-none">
+            <h5 class="offcanvas-title fw-bold" id="dashboardSidebarLabel">
+              CodeCollab
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              data-bs-target="#dashboardSidebar"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column p-3 p-lg-0">
+            <!-- Navigation -->
+            <nav class="dashboard-nav mt-lg-4">
+              <p class="dashboard-nav-label text-uppercase small fw-semibold">
+                Workspace
+              </p>
+
+              <a href="dashboard.html" class="dashboard-nav-link active">
+                <i class="bi bi-house-door"></i>
+                <span>Home</span>
+              </a>
+
+              <a href="projects.html" class="dashboard-nav-link">
+                <i class="bi bi-folder2-open"></i>
+                <span>Projects</span>
+              </a>
+
+              <a href="create.html" class="dashboard-nav-link">
+                <i class="bi bi-plus-square"></i>
+                <span>Create</span>
+              </a>
+
+              <a href="profile.html" class="dashboard-nav-link">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+              </a>
+            </nav>
+
+            <!-- Discover -->
+            <nav class="dashboard-nav mt-4">
+              <p class="dashboard-nav-label text-uppercase small fw-semibold">
+                Discover
+              </p>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-compass"></i>
+                <span>Explore</span>
+              </a>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-people"></i>
+                <span>People</span>
+              </a>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-bookmark"></i>
+                <span>Saved</span>
+              </a>
+            </nav>
+
+            <!-- Bottom -->
+            <div class="mt-auto pt-4">
+              <nav class="dashboard-nav">
+                <a href="settings.html" class="dashboard-nav-link">
+                  <i class="bi bi-gear"></i>
+                  <span>Settings</span>
+                </a>
+
+                <button
+                  type="button"
+                  class="dashboard-nav-link dashboard-logout w-100 border-0 bg-transparent text-start"
+                  id="sidebarLogoutBtn"
+                >
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Log out</span>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </aside>
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="col-lg-10 dashboard-main">
+          <div class="container-fluid py-4 px-3 px-lg-5">
+            <!-- Welcome -->
+            <section class="dashboard-welcome mb-4">
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
+              >
+                <div>
+                  <p class="text-primary fw-semibold mb-1">Welcome back 👋</p>
+
+                  <h1 class="h3 fw-bold mb-2">
+                    Good to see you,
+                    <span id="welcomeUserName">Promise</span>.
+                  </h1>
+
+                  <p class="text-muted mb-0">
+                    Discover what developers are building today.
+                  </p>
+                </div>
+
+                <a
+                  href="create.html"
+                  class="btn btn-primary rounded-3 px-4 py-2"
+                >
+                  <i class="bi bi-plus-lg me-2"></i>
+                  Create
+                </a>
+              </div>
+            </section>
+
+            <!-- Quick action cards -->
+            <section class="mb-5">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <a href="projects.html" class="text-decoration-none">
+                    <div class="dashboard-action-card h-100">
+                      <div class="dashboard-action-icon">
+                        <i class="bi bi-code-square"></i>
+                      </div>
+
+                      <h2 class="h6 fw-bold">Explore projects</h2>
+
+                      <p class="text-muted small mb-0">
+                        Find projects, ideas and developers to learn from.
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-4">
+                  <a href="create.html" class="text-decoration-none">
+                    <div class="dashboard-action-card h-100">
+                      <div class="dashboard-action-icon">
+                        <i class="bi bi-pencil-square"></i>
+                      </div>
+
+                      <h2 class="h6 fw-bold">Share something</h2>
+
+                      <p class="text-muted small mb-0">
+                        Publish what you built, learned or discovered.
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-md-4">
+                  <a href="profile.html" class="text-decoration-none">
+                    <div class="dashboard-action-card h-100">
+                      <div class="dashboard-action-icon">
+                        <i class="bi bi-person-badge"></i>
+                      </div>
+
+                      <h2 class="h6 fw-bold">Complete your profile</h2>
+
+                      <p class="text-muted small mb-0">
+                        Tell the community what you build and what you know.
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </section>
+
+            <!-- Feed header -->
+            <section>
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <div>
+                  <h2 class="h5 fw-bold mb-1">Community feed</h2>
+
+                  <p class="text-muted small mb-0">
+                    See what developers are sharing.
+                  </p>
+                </div>
+
+                <button class="btn btn-light btn-sm" type="button">
+                  Latest
+                  <i class="bi bi-chevron-down ms-1"></i>
+                </button>
+              </div>
+
+              <!-- ===============================
+                   POST CARD
+              ================================= -->
+
+              <article class="dashboard-post-card mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div class="d-flex gap-3">
+                    <div class="post-avatar">D</div>
+
+                    <div>
+                      <h3 class="h6 fw-bold mb-1">David Okafor</h3>
+
+                      <p class="text-muted small mb-0">@daviddev · 2h ago</p>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-light btn-sm" type="button">
+                    <i class="bi bi-three-dots"></i>
+                  </button>
+                </div>
+
+                <div class="mt-3">
+                  <h4 class="h6 fw-bold">
+                    I finally built my first React dashboard
+                  </h4>
+
+                  <p class="text-muted mb-3">
+                    After weeks of learning React, I finally built a dashboard
+                    without following a tutorial line by line. The biggest
+                    lesson was understanding component structure.
+                  </p>
+
+                  <div class="d-flex gap-2 flex-wrap mb-3">
+                    <span class="badge text-bg-light border"> React </span>
+
+                    <span class="badge text-bg-light border"> JavaScript </span>
+
+                    <span class="badge text-bg-light border"> Bootstrap </span>
+                  </div>
+                </div>
+
+                <div class="border-top pt-3">
+                  <div class="d-flex gap-4">
+                    <button class="btn btn-sm btn-light">
+                      <i class="bi bi-heart me-1"></i>
+                      24
+                    </button>
+
+                    <button class="btn btn-sm btn-light">
+                      <i class="bi bi-chat me-1"></i>
+                      8
+                    </button>
+
+                    <button class="btn btn-sm btn-light">
+                      <i class="bi bi-bookmark me-1"></i>
+                      Save
+                    </button>
+
+                    <button class="btn btn-sm btn-light ms-auto">
+                      <i class="bi bi-share me-1"></i>
+                      Share
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- ===============================
+                   PROJECT CARD
+              ================================= -->
+
+              <article class="dashboard-post-card mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div class="d-flex gap-3">
+                    <div class="post-avatar">A</div>
+
+                    <div>
+                      <h3 class="h6 fw-bold mb-1">Amina Bello</h3>
+
+                      <p class="text-muted small mb-0">@aminacodes · 5h ago</p>
+                    </div>
+                  </div>
+
+                  <span class="badge rounded-pill text-bg-primary">
+                    Project
+                  </span>
+                </div>
+
+                <div class="mt-3">
+                  <h4 class="h6 fw-bold">Developer Resource Hub</h4>
+
+                  <p class="text-muted mb-3">
+                    A simple platform for developers to discover useful
+                    resources, project ideas and beginner-friendly guides.
+                  </p>
+
+                  <div class="d-flex gap-2 flex-wrap mb-3">
+                    <span class="badge text-bg-light border"> HTML </span>
+
+                    <span class="badge text-bg-light border"> CSS </span>
+
+                    <span class="badge text-bg-light border"> JavaScript </span>
+                  </div>
+
+                  <button
+                    class="btn btn-outline-primary btn-sm rounded-3"
+                    type="button"
+                  >
+                    View project
+                  </button>
+                </div>
+
+                <div class="border-top pt-3 mt-3">
+                  <div class="d-flex gap-4">
+                    <span class="small text-muted">
+                      <i class="bi bi-star me-1"></i>
+                      12 stars
+                    </span>
+
+                    <span class="small text-muted">
+                      <i class="bi bi-diagram-3 me-1"></i>
+                      4 forks
+                    </span>
+
+                    <span class="small text-muted">
+                      <i class="bi bi-chat me-1"></i>
+                      6 comments
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dashboard JS -->
+    <script src="./dashboard.js"></script>
+  </body>
+</html>

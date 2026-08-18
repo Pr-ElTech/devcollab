@@ -940,3 +940,506 @@ footer .input-group .form-control {
     padding: 3rem 1.5rem;
   }
 }
+/* =========================================================
+   CODECOLLAB DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: "Inter", sans-serif;
+  color: #0f172a;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.dashboard-logo {
+  width: 145px;
+  height: auto;
+  display: block;
+}
+
+.dashboard-search {
+  max-width: 620px;
+}
+
+.dashboard-search .input-group-text,
+.dashboard-search .form-control {
+  border-color: #e2e8f0;
+  min-height: 44px;
+}
+
+.dashboard-search .form-control {
+  font-size: 0.9rem;
+  box-shadow: none;
+}
+
+.dashboard-search .form-control:focus {
+  background: #fff;
+  border-color: #86b7fe;
+  box-shadow: none;
+}
+
+.dashboard-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #0d6efd;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.dashboard-sidebar {
+  min-height: calc(100vh - 73px);
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.dashboard-sidebar .offcanvas-body {
+  min-height: calc(100vh - 73px);
+}
+
+.dashboard-nav-label {
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  margin-bottom: 0.65rem;
+}
+
+.dashboard-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 0.25rem;
+  border-radius: 10px;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.dashboard-nav-link i {
+  width: 20px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.dashboard-nav-link:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.dashboard-nav-link.active {
+  background: #eff6ff;
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.dashboard-logout:hover {
+  color: #dc3545;
+  background: #fef2f2;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dashboard-main {
+  min-height: calc(100vh - 73px);
+}
+
+.dashboard-welcome {
+  padding-top: 0.25rem;
+}
+
+.dashboard-welcome h1 {
+  color: #0f172a;
+}
+
+.dashboard-welcome p {
+  font-size: 0.92rem;
+}
+
+/* =========================================================
+   QUICK ACTION CARDS
+   ========================================================= */
+
+.dashboard-action-card {
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-action-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+  background: #eff6ff;
+  color: #0d6efd;
+  font-size: 1.1rem;
+}
+
+.dashboard-action-card h2 {
+  color: #0f172a;
+  margin-bottom: 0.4rem;
+}
+
+.dashboard-action-card p {
+  line-height: 1.5;
+}
+
+/* =========================================================
+   FEED / POST CARDS
+   ========================================================= */
+
+.dashboard-post-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dashboard-post-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-post-card h3,
+.dashboard-post-card h4 {
+  color: #0f172a;
+}
+
+.dashboard-post-card p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   POST AVATAR
+   ========================================================= */
+
+.post-avatar {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.dashboard-page .btn {
+  font-weight: 500;
+}
+
+.dashboard-page .btn-light {
+  border-color: #e2e8f0;
+  color: #475569;
+  background: #fff;
+}
+
+.dashboard-page .btn-light:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.dashboard-page .btn-primary {
+  box-shadow: none;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.dashboard-page .badge.text-bg-light {
+  color: #475569 !important;
+  background: #f8fafc !important;
+  font-weight: 500;
+  padding: 0.45rem 0.65rem;
+}
+
+/* =========================================================
+   DROPDOWN
+   ========================================================= */
+
+.dashboard-page .dropdown-menu {
+  min-width: 190px;
+  padding: 0.45rem;
+}
+
+.dashboard-page .dropdown-item {
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.dashboard-page .dropdown-item:hover {
+  background: #f8fafc;
+}
+
+/* =========================================================
+   NOTIFICATION BADGE
+   ========================================================= */
+
+.dashboard-header .badge {
+  font-size: 0.55rem;
+  padding: 0.25rem 0.4rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .dashboard-sidebar {
+    width: 280px;
+    min-height: 100vh;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .dashboard-sidebar .offcanvas-body {
+    min-height: calc(100vh - 65px);
+  }
+
+  .dashboard-main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dashboard-logo {
+    width: 125px;
+  }
+
+  .dashboard-welcome h1 {
+    font-size: 1.45rem;
+  }
+
+  .dashboard-post-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .dashboard-action-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-header {
+    position: sticky;
+  }
+
+  .dashboard-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dashboard-post-card p {
+    font-size: 0.86rem;
+  }
+} /* =========================================================
+   CREATE PAGE
+   ========================================================= */
+
+.create-option-card {
+  display: block;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  color: #0f172a;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.create-option-card:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+  background: #fafdff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+}
+
+.create-option-card:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+}
+
+.create-option-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+  color: #0d6efd;
+
+  font-size: 1.2rem;
+}
+
+.create-option-card h2 {
+  color: #0f172a;
+}
+
+.create-option-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   CREATE FORM
+   ========================================================= */
+
+.create-form-card {
+  max-width: 850px;
+
+  padding: 1.5rem;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+.create-form-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #eff6ff;
+  color: #0d6efd;
+
+  font-size: 1.05rem;
+}
+
+/* =========================================================
+   CREATE FORM INPUTS
+   ========================================================= */
+
+.create-form-card .form-control,
+.create-form-card .form-select,
+.create-form-card .input-group-text {
+  border-color: #dbe3ec;
+}
+
+.create-form-card .form-control:focus,
+.create-form-card .form-select:focus {
+  border-color: #86b7fe;
+
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.create-form-card textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.create-form-card .form-label {
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.create-form-card .form-text {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+/* =========================================================
+   CREATE BUTTON
+   ========================================================= */
+
+.create-form-card .btn-primary {
+  min-width: 150px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .create-form-card {
+    padding: 1.15rem;
+    border-radius: 14px;
+  }
+
+  .create-option-card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .create-form-card {
+    padding: 1rem;
+    box-shadow: none;
+  }
+
+  .create-option-card {
+    border-radius: 12px;
+  }
+}
