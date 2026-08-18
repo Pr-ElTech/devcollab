@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projects | CodeCollab</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="assets/images/logo.png"
+            alt="CodeCollab"
+            class="navbar-logo"
+          />
+        </a>
+
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"> Home </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="features.html"> Features </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="how-it-works.html"> How It Works </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="projects.html"> Projects </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"> About </a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+            <a
+              href="login.html"
+              class="text-dark text-decoration-none fw-medium"
+            >
+              Log in
+            </a>
+
+            <a href="signup.html" class="btn btn-primary rounded-pill px-4">
+              Sign Up
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- =========================
+         PAGE INTRO
+    ========================== -->
+
+    <section class="projects-intro py-5">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <span
+              class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+            >
+              Discover
+            </span>
+
+            <h1 class="display-5 fw-bold mt-3 mb-3">
+              See what developers are building.
+            </h1>
+
+            <p class="text-muted fs-5 mb-4">
+              Discover real projects, learn from the people behind them, and
+              find developers to build with.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="project-search">
+              <i class="bi bi-search"></i>
+
+              <input
+                type="search"
+                class="form-control"
+                placeholder="Search projects, technologies or GitHub username..."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SIMPLE FILTERS
+    ========================== -->
+
+    <section class="pb-4">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <button class="project-filter active">All</button>
+
+          <button class="project-filter">JavaScript</button>
+
+          <button class="project-filter">React</button>
+
+          <button class="project-filter">Node.js</button>
+
+          <button class="project-filter">AI</button>
+
+          <button class="project-filter">Beginner</button>
+
+          <button class="project-filter">Trending</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         PROJECT FEED
+    ========================== -->
+
+    <main class="py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <!-- =========================
+                 PROJECT POST 1
+            ========================== -->
+
+            <article class="project-post">
+              <!-- AUTHOR -->
+
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <img
+                    src="https://i.pravatar.cc/100?img=12"
+                    alt="Developer"
+                    class="project-avatar"
+                  />
+
+                  <div>
+                    <h6 class="fw-bold mb-0">Daniel Okoro</h6>
+
+                    <small class="text-muted"> @danielokoro · 2h ago </small>
+                  </div>
+                </div>
+
+                <button class="post-menu">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+
+              <!-- PROJECT -->
+
+              <h3 class="h4 fw-bold">AI Resume Analyzer</h3>
+
+              <p class="text-muted">
+                I built a simple AI-powered resume analyzer to understand
+                document processing, API architecture and prompt engineering.
+              </p>
+
+              <!-- IMAGE -->
+
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80"
+                alt="AI Resume Analyzer project"
+                class="project-post-image"
+              />
+
+              <!-- TECH -->
+
+              <div class="d-flex flex-wrap gap-2 my-3">
+                <span class="tech-tag"> React </span>
+
+                <span class="tech-tag"> Node.js </span>
+
+                <span class="tech-tag"> MongoDB </span>
+
+                <span class="tech-tag"> OpenAI </span>
+              </div>
+
+              <!-- LEARNING -->
+
+              <div class="project-learning">
+                <span class="small fw-semibold text-primary">
+                  WHAT I LEARNED
+                </span>
+
+                <p class="small text-muted mb-0 mt-1">
+                  Separating the AI service from the main API made the project
+                  easier to maintain and understand.
+                </p>
+              </div>
+
+              <!-- ACTIONS -->
+
+              <div class="project-actions">
+                <button class="project-action">
+                  <i class="bi bi-heart"></i>
+                  <span>248</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-chat"></i>
+                  <span>31</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-bookmark"></i>
+                  <span>Save</span>
+                </button>
+
+                <a href="#" class="project-link ms-auto">
+                  View Project
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- =========================
+                 PROJECT POST 2
+            ========================== -->
+
+            <article class="project-post">
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <img
+                    src="https://i.pravatar.cc/100?img=33"
+                    alt="Developer"
+                    class="project-avatar"
+                  />
+
+                  <div>
+                    <h6 class="fw-bold mb-0">Sarah Mensah</h6>
+
+                    <small class="text-muted"> @sarahbuilds · 5h ago </small>
+                  </div>
+                </div>
+
+                <button class="post-menu">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+
+              <h3 class="h4 fw-bold">Minimal Finance Dashboard</h3>
+
+              <p class="text-muted">
+                A clean finance dashboard I built while learning component
+                design, API consumption and responsive layouts.
+              </p>
+
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80"
+                alt="Finance dashboard project"
+                class="project-post-image"
+              />
+
+              <div class="d-flex flex-wrap gap-2 my-3">
+                <span class="tech-tag"> HTML </span>
+
+                <span class="tech-tag"> CSS </span>
+
+                <span class="tech-tag"> JavaScript </span>
+
+                <span class="tech-tag"> Bootstrap </span>
+              </div>
+
+              <div class="project-learning">
+                <span class="small fw-semibold text-primary">
+                  BEGINNER FRIENDLY
+                </span>
+
+                <p class="small text-muted mb-0 mt-1">
+                  Good project for understanding dashboards, cards, responsive
+                  grids and API-driven interfaces.
+                </p>
+              </div>
+
+              <div class="project-actions">
+                <button class="project-action">
+                  <i class="bi bi-heart"></i>
+                  <span>182</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-chat"></i>
+                  <span>18</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-bookmark"></i>
+                  <span>Save</span>
+                </button>
+
+                <a href="#" class="project-link ms-auto">
+                  View Project
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- =========================
+                 VIDEO PROJECT
+            ========================== -->
+
+            <article class="project-post">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <img
+                  src="https://i.pravatar.cc/100?img=59"
+                  alt="Developer"
+                  class="project-avatar"
+                />
+
+                <div>
+                  <h6 class="fw-bold mb-0">Michael James</h6>
+
+                  <small class="text-muted"> @michaelcodes · 1d ago </small>
+                </div>
+              </div>
+
+              <h3 class="h4 fw-bold">Building a REST API from Scratch</h3>
+
+              <p class="text-muted">
+                A short walkthrough of how I structured this Node.js API and
+                what I learned while building it.
+              </p>
+
+              <!-- VIDEO PLACEHOLDER -->
+
+              <div class="project-video">
+                <img
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
+                  alt="Coding tutorial"
+                />
+
+                <button class="video-play-button">
+                  <i class="bi bi-play-fill"></i>
+                </button>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2 my-3">
+                <span class="tech-tag"> Node.js </span>
+
+                <span class="tech-tag"> Express </span>
+
+                <span class="tech-tag"> MongoDB </span>
+              </div>
+
+              <div class="project-actions">
+                <button class="project-action">
+                  <i class="bi bi-heart"></i>
+                  <span>402</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-chat"></i>
+                  <span>44</span>
+                </button>
+
+                <button class="project-action">
+                  <i class="bi bi-bookmark"></i>
+                  <span>Save</span>
+                </button>
+
+                <a href="#" class="project-link ms-auto">
+                  View Project
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================
+         FIND DEVELOPER
+    ========================== -->
+
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7 text-center">
+            <span
+              class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+            >
+              Collaborate
+            </span>
+
+            <h2 class="display-6 fw-bold mt-3">
+              Found someone you want to build with?
+            </h2>
+
+            <p class="text-muted mt-3">
+              Search their GitHub username to find their CodeCollab profile and
+              explore their projects.
+            </p>
+
+            <div class="collaborate-search mt-4">
+              <div class="input-group">
+                <span class="input-group-text bg-white"> @ </span>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="GitHub username"
+                />
+
+                <button class="btn btn-primary px-4">Find</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CREATOR CTA
+    ========================== -->
+
+    <section class="py-5">
+      <div class="container">
+        <div class="creator-box text-center">
+          <span
+            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+          >
+            Share What You Build
+          </span>
+
+          <h2 class="display-6 fw-bold mt-3">
+            Your project could help someone learn.
+          </h2>
+
+          <p class="text-muted mx-auto mt-3 mb-4 creator-copy">
+            Publish your project, explain what you learned, share your
+            development journey and grow an audience around your work.
+          </p>
+
+          <a
+            href="signup.html"
+            class="btn btn-primary rounded-pill px-5 py-3 fw-semibold"
+          >
+            Create Your First Post
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="bg-white border-top py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <img
+              src="assets/images/logo.png"
+              alt="CodeCollab"
+              class="footer-logo"
+            />
+
+            <p class="text-muted small mt-3">
+              Discover how developers build. Learn from real projects. Build
+              with confidence.
+            </p>
+          </div>
+
+          <div class="col-6 col-md-2">
+            <h6 class="fw-bold mb-3">Platform</h6>
+
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="features.html" class="text-muted text-decoration-none">
+                  Features
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a href="projects.html" class="text-muted text-decoration-none">
+                  Projects
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a
+                  href="how-it-works.html"
+                  class="text-muted text-decoration-none"
+                >
+                  How It Works
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-2">
+            <h6 class="fw-bold mb-3">Company</h6>
+
+            <ul class="list-unstyled small">
+              <li class="mb-2">
+                <a href="about.html" class="text-muted text-decoration-none">
+                  About
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a href="#" class="text-muted text-decoration-none">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="text-center text-muted small">
+          &copy; 2026 CodeCollab. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
