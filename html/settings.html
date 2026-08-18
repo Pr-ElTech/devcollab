@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Settings | CodeCollab</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="dashboard-page">
+    <!-- =====================================================
+         TOP NAVBAR
+    ====================================================== -->
+
+    <header class="dashboard-header border-bottom bg-white">
+      <div class="container-fluid px-3 px-lg-4">
+        <div
+          class="d-flex align-items-center justify-content-between gap-3 py-3"
+        >
+          <!-- Brand -->
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-light d-lg-none me-2"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#dashboardSidebar"
+              aria-controls="dashboardSidebar"
+              aria-label="Open navigation"
+            >
+              <i class="bi bi-list fs-5"></i>
+            </button>
+
+            <a href="dashboard.html" class="text-decoration-none">
+              <img
+                src="assets/images/logo.png"
+                alt="CodeCollab"
+                class="dashboard-logo"
+              />
+            </a>
+          </div>
+
+          <!-- Search -->
+          <div class="dashboard-search flex-grow-1 d-none d-md-block">
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0">
+                <i class="bi bi-search text-muted"></i>
+              </span>
+
+              <input
+                type="search"
+                class="form-control bg-light border-start-0"
+                placeholder="Search posts, projects, people..."
+                aria-label="Search CodeCollab"
+              />
+            </div>
+          </div>
+
+          <!-- Right navigation -->
+          <div class="d-flex align-items-center gap-2">
+            <!-- Mobile search -->
+            <button
+              class="btn btn-light d-md-none"
+              type="button"
+              aria-label="Search"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Notifications -->
+            <button
+              class="btn btn-light position-relative"
+              type="button"
+              aria-label="Notifications"
+            >
+              <i class="bi bi-bell fs-5"></i>
+
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+              >
+                3
+              </span>
+            </button>
+
+            <!-- User -->
+            <div class="dropdown">
+              <button
+                class="btn btn-light d-flex align-items-center gap-2"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="dashboard-avatar" id="navUserAvatar">P</div>
+
+                <span class="d-none d-lg-inline fw-semibold" id="navUserName">
+                  Promise
+                </span>
+
+                <i class="bi bi-chevron-down small"></i>
+              </button>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                <li>
+                  <a class="dropdown-item" href="profile.html">
+                    <i class="bi bi-person me-2"></i>
+                    Profile
+                  </a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="settings.html">
+                    <i class="bi bi-gear me-2"></i>
+                    Settings
+                  </a>
+                </li>
+
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+
+                <li>
+                  <button
+                    class="dropdown-item text-danger"
+                    type="button"
+                    id="logoutBtn"
+                  >
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Log out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile search -->
+        <div class="d-md-none pb-3">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0">
+              <i class="bi bi-search text-muted"></i>
+            </span>
+
+            <input
+              type="search"
+              class="form-control bg-light border-start-0"
+              placeholder="Search posts, projects, people..."
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         MAIN LAYOUT
+    ====================================================== -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside
+          class="offcanvas-lg offcanvas-start col-lg-2 dashboard-sidebar"
+          tabindex="-1"
+          id="dashboardSidebar"
+          aria-labelledby="dashboardSidebarLabel"
+        >
+          <div class="offcanvas-header d-lg-none">
+            <h5 class="offcanvas-title fw-bold" id="dashboardSidebarLabel">
+              CodeCollab
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column p-3 p-lg-0">
+            <nav class="dashboard-nav mt-lg-4">
+              <p class="dashboard-nav-label text-uppercase small fw-semibold">
+                Workspace
+              </p>
+
+              <a href="dashboard.html" class="dashboard-nav-link">
+                <i class="bi bi-house-door"></i>
+                <span>Home</span>
+              </a>
+
+              <a href="projects.html" class="dashboard-nav-link">
+                <i class="bi bi-folder2-open"></i>
+                <span>Projects</span>
+              </a>
+
+              <a href="create.html" class="dashboard-nav-link">
+                <i class="bi bi-plus-square"></i>
+                <span>Create</span>
+              </a>
+
+              <a href="profile.html" class="dashboard-nav-link">
+                <i class="bi bi-person"></i>
+                <span>Profile</span>
+              </a>
+            </nav>
+
+            <nav class="dashboard-nav mt-4">
+              <p class="dashboard-nav-label text-uppercase small fw-semibold">
+                Discover
+              </p>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-compass"></i>
+                <span>Explore</span>
+              </a>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-people"></i>
+                <span>People</span>
+              </a>
+
+              <a href="#" class="dashboard-nav-link">
+                <i class="bi bi-bookmark"></i>
+                <span>Saved</span>
+              </a>
+            </nav>
+
+            <div class="mt-auto pt-4">
+              <nav class="dashboard-nav">
+                <a href="settings.html" class="dashboard-nav-link active">
+                  <i class="bi bi-gear"></i>
+                  <span>Settings</span>
+                </a>
+
+                <button
+                  type="button"
+                  class="dashboard-nav-link dashboard-logout w-100 border-0 bg-transparent text-start"
+                  id="sidebarLogoutBtn"
+                >
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Log out</span>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </aside>
+
+        <!-- =================================================
+             SETTINGS CONTENT
+        ================================================== -->
+
+        <main class="col-lg-10 dashboard-main">
+          <div class="container py-4 py-lg-5">
+            <!-- Page heading -->
+            <div class="settings-page-header mb-4">
+              <p class="text-primary fw-semibold mb-1">Account</p>
+
+              <h1 class="h3 fw-bold mb-2">Settings</h1>
+
+              <p class="text-muted mb-0">
+                Manage your CodeCollab profile and account information.
+              </p>
+            </div>
+
+            <div class="row g-4">
+              <!-- =================================================
+                   SETTINGS NAVIGATION
+              ================================================== -->
+
+              <div class="col-lg-3">
+                <div class="settings-nav-card">
+                  <p class="text-uppercase text-muted small fw-semibold mb-2">
+                    Settings
+                  </p>
+
+                  <a href="#profile-settings" class="settings-nav-link active">
+                    <i class="bi bi-person"></i>
+                    Profile
+                  </a>
+
+                  <a href="#developer-settings" class="settings-nav-link">
+                    <i class="bi bi-code-slash"></i>
+                    Developer profile
+                  </a>
+
+                  <a href="#account-settings" class="settings-nav-link">
+                    <i class="bi bi-shield-lock"></i>
+                    Account
+                  </a>
+
+                  <a href="#danger-zone" class="settings-nav-link text-danger">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Danger zone
+                  </a>
+                </div>
+              </div>
+
+              <!-- =================================================
+                   SETTINGS FORMS
+              ================================================== -->
+
+              <div class="col-lg-9">
+                <!-- Profile settings -->
+                <section class="settings-card mb-4" id="profile-settings">
+                  <div class="settings-card-header">
+                    <div>
+                      <h2 class="h6 fw-bold mb-1">Profile information</h2>
+
+                      <p class="text-muted small mb-0">
+                        Update the information shown on your profile.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-card-body">
+                    <form id="profileSettingsForm">
+                      <div class="row g-3">
+                        <!-- First name -->
+                        <div class="col-md-6">
+                          <label
+                            for="settingsFirstName"
+                            class="form-label fw-semibold"
+                          >
+                            First name
+                          </label>
+
+                          <input
+                            type="text"
+                            id="settingsFirstName"
+                            class="form-control"
+                            placeholder="Promise"
+                            required
+                          />
+                        </div>
+
+                        <!-- Last name -->
+                        <div class="col-md-6">
+                          <label
+                            for="settingsLastName"
+                            class="form-label fw-semibold"
+                          >
+                            Last name
+                          </label>
+
+                          <input
+                            type="text"
+                            id="settingsLastName"
+                            class="form-control"
+                            placeholder="Elijah"
+                            required
+                          />
+                        </div>
+
+                        <!-- Username -->
+                        <div class="col-12">
+                          <label
+                            for="settingsUsername"
+                            class="form-label fw-semibold"
+                          >
+                            Username
+                          </label>
+
+                          <div class="input-group">
+                            <span class="input-group-text"> @ </span>
+
+                            <input
+                              type="text"
+                              id="settingsUsername"
+                              class="form-control"
+                              placeholder="yourusername"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="col-12">
+                          <label
+                            for="settingsBio"
+                            class="form-label fw-semibold"
+                          >
+                            Bio
+                          </label>
+
+                          <textarea
+                            id="settingsBio"
+                            class="form-control"
+                            rows="4"
+                            maxlength="280"
+                            placeholder="Tell developers what you build, what you're learning, or what you're interested in."
+                          ></textarea>
+
+                          <div class="form-text">Maximum 280 characters.</div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-end mt-4">
+                        <button
+                          type="submit"
+                          class="btn btn-primary rounded-3 px-4"
+                        >
+                          Save changes
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </section>
+
+                <!-- Developer settings -->
+                <section class="settings-card mb-4" id="developer-settings">
+                  <div class="settings-card-header">
+                    <div>
+                      <h2 class="h6 fw-bold mb-1">Developer profile</h2>
+
+                      <p class="text-muted small mb-0">
+                        Help other developers understand what you work with.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-card-body">
+                    <form id="developerSettingsForm">
+                      <!-- Role -->
+                      <div class="mb-4">
+                        <label
+                          for="settingsRole"
+                          class="form-label fw-semibold"
+                        >
+                          Primary role
+                        </label>
+
+                        <select id="settingsRole" class="form-select" required>
+                          <option value="">Select your role</option>
+
+                          <option>Frontend Developer</option>
+
+                          <option>Backend Developer</option>
+
+                          <option>Full Stack Developer</option>
+
+                          <option>Mobile Developer</option>
+
+                          <option>AI / ML Developer</option>
+
+                          <option>DevOps / Cloud</option>
+
+                          <option>UI / UX Designer</option>
+
+                          <option>Beginner / Learning</option>
+
+                          <option>Other</option>
+                        </select>
+                      </div>
+
+                      <!-- Skills -->
+                      <div class="mb-3">
+                        <label
+                          for="settingsSkills"
+                          class="form-label fw-semibold"
+                        >
+                          Skills
+                        </label>
+
+                        <input
+                          type="text"
+                          id="settingsSkills"
+                          class="form-control"
+                          placeholder="React, JavaScript, Bootstrap, Node.js"
+                        />
+
+                        <div class="form-text">
+                          Separate skills with commas.
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-end mt-4">
+                        <button
+                          type="submit"
+                          class="btn btn-primary rounded-3 px-4"
+                        >
+                          Save developer profile
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </section>
+
+                <!-- Account settings -->
+                <section class="settings-card mb-4" id="account-settings">
+                  <div class="settings-card-header">
+                    <div>
+                      <h2 class="h6 fw-bold mb-1">Account</h2>
+
+                      <p class="text-muted small mb-0">
+                        Manage your account information.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-card-body">
+                    <!-- Email -->
+                    <div class="settings-account-row">
+                      <div class="settings-account-icon">
+                        <i class="bi bi-envelope"></i>
+                      </div>
+
+                      <div class="flex-grow-1">
+                        <span class="settings-account-label">
+                          Email address
+                        </span>
+
+                        <strong
+                          id="settingsEmail"
+                          class="settings-account-value"
+                        >
+                          --
+                        </strong>
+                      </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="settings-account-row">
+                      <div class="settings-account-icon">
+                        <i class="bi bi-lock"></i>
+                      </div>
+
+                      <div class="flex-grow-1">
+                        <span class="settings-account-label"> Password </span>
+
+                        <strong class="settings-account-value">
+                          ••••••••••
+                        </strong>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary btn-sm"
+                        id="changePasswordBtn"
+                      >
+                        Change
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Danger zone -->
+                <section
+                  class="settings-card settings-danger-card"
+                  id="danger-zone"
+                >
+                  <div class="settings-card-header">
+                    <div>
+                      <h2 class="h6 fw-bold text-danger mb-1">Danger zone</h2>
+
+                      <p class="text-muted small mb-0">
+                        These actions can affect your account.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="settings-card-body">
+                    <div
+                      class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
+                    >
+                      <div>
+                        <strong class="d-block mb-1">
+                          Log out of CodeCollab
+                        </strong>
+
+                        <span class="text-muted small">
+                          End your current CodeCollab session.
+                        </span>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="btn btn-outline-danger rounded-3"
+                        id="settingsLogoutBtn"
+                      >
+                        <i class="bi bi-box-arrow-right me-2"></i>
+                        Log out
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Settings JS -->
+    <script src="../js/settings.js"></script>
+  </body>
+</html>
