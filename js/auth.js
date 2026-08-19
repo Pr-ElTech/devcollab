@@ -6,16 +6,35 @@
 (function () {
   "use strict";
 
+  // ==========================================
+  // STORAGE KEYS
+  // ==========================================
+
   const USERS_KEY = "codecollabUsers";
   const CURRENT_USER_KEY = "codecollabCurrentUser";
+  const REMEMBER_ME_KEY = "codecollabRememberMe";
 
   // ==========================================
-  // STORAGE
+  // USERS
   // ==========================================
 
   function getUsers() {
-    return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+    try {
+      const users = JSON.parse(localStorage.getItem(USERS_KEY));
+      return Array.isArray(users) ? users : [];
+    } catch (error) {
+      console.error("CodeCollab: Could not read users.", error);
+      return [];
+    }
   }
+
+  function saveUsers(users) {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  }
+
+  // ==========================================
+  // CURRENT USER
+  // ==========================================
 
   function getCurrentUserId() {
     return localStorage.getItem(CURRENT_USER_KEY);
@@ -30,7 +49,9 @@
 
     const users = getUsers();
 
-    return users.find((user) => user.id === currentUserId) || null;
+    return (
+      users.find((user) => String(user.id) === String(currentUserId)) || null
+    );
   }
 
   function isLoggedIn() {
@@ -38,19 +59,37 @@
   }
 
   // ==========================================
-  // SESSION
+  // LOGIN
   // ==========================================
 
-  function login(userId) {
-    localStorage.setItem(CURRENT_USER_KEY, userId);
+  function login(userId, rememberMe = false) {
+    if (!userId) {
+      return false;
+    }
+
+    localStorage.setItem(CURRENT_USER_KEY, String(userId));
+
+    if (rememberMe) {
+      localStorage.setItem(REMEMBER_ME_KEY, "true");
+    } else {
+      localStorage.removeItem(REMEMBER_ME_KEY);
+    }
+
+    return true;
   }
 
-  function logout() {
+  // ==========================================
+  // LOGOUT
+  // ==========================================
+
+  function logout(redirect = true) {
     localStorage.removeItem(CURRENT_USER_KEY);
 
-    localStorage.removeItem("codecollabRememberMe");
+    localStorage.removeItem(REMEMBER_ME_KEY);
 
-    window.location.href = "login.html";
+    if (redirect) {
+      window.location.href = "login.html";
+    }
   }
 
   // ==========================================
@@ -60,7 +99,6 @@
   function requireAuth() {
     if (!isLoggedIn()) {
       window.location.href = "login.html";
-
       return false;
     }
 
@@ -70,7 +108,6 @@
   function requireGuest() {
     if (isLoggedIn()) {
       window.location.href = "dashboard.html";
-
       return false;
     }
 
@@ -78,10 +115,10 @@
   }
 
   // ==========================================
-  // UPDATE USER DATA
+  // UPDATE CURRENT USER
   // ==========================================
 
-  function updateCurrentUser(updates) {
+  function updateCurrentUser(updates = {}) {
     const currentUserId = getCurrentUserId();
 
     if (!currentUserId) {
@@ -90,7 +127,9 @@
 
     const users = getUsers();
 
-    const index = users.findIndex((user) => user.id === currentUserId);
+    const index = users.findIndex(
+      (user) => String(user.id) === String(currentUserId),
+    );
 
     if (index === -1) {
       return null;
@@ -101,9 +140,33 @@
       ...updates,
     };
 
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    saveUsers(users);
 
     return users[index];
+  }
+
+  // ==========================================
+  // INITIALS
+  // ==========================================
+
+  function getUserInitials(user) {
+    if (!user) {
+      return "U";
+    }
+
+    const firstName = user.firstName?.trim() || "";
+
+    const lastName = user.lastName?.trim() || "";
+
+    if (!firstName && !lastName) {
+      return "U";
+    }
+
+    if (!lastName) {
+      return firstName.charAt(0).toUpperCase();
+    }
+
+    return (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
   }
 
   // ==========================================
@@ -113,20 +176,14 @@
   function renderAuthUI() {
     const user = getCurrentUser();
 
-    // ------------------------------
-    // Logged-in elements
-    // ------------------------------
-
+    // Logged in elements
     document
       .querySelectorAll('[data-session="logged-in"]')
       .forEach((element) => {
         element.classList.toggle("d-none", !user);
       });
 
-    // ------------------------------
-    // Logged-out elements
-    // ------------------------------
-
+    // Logged out elements
     document
       .querySelectorAll('[data-session="logged-out"]')
       .forEach((element) => {
@@ -137,66 +194,38 @@
       return;
     }
 
-    // ------------------------------
-    // User names
-    // ------------------------------
-
+    // First name
     document.querySelectorAll("[data-user-name]").forEach((element) => {
-      element.textContent = user.firstName || "User";
+      element.textContent = user.firstName || "Developer";
     });
 
+    // Full name
     document.querySelectorAll("[data-user-full-name]").forEach((element) => {
-      element.textContent =
-        `${user.firstName || ""} ${user.lastName || ""}`.trim() ||
-        "CodeCollab User";
+      const fullName = `${user.firstName || ""} ${user.lastName || ""}`.trim();
+
+      element.textContent = fullName || "CodeCollab User";
     });
 
-    // ------------------------------
     // Username
-    // ------------------------------
-
     document.querySelectorAll("[data-user-username]").forEach((element) => {
       element.textContent = user.username ? `@${user.username}` : "@user";
     });
 
-    // ------------------------------
     // Role
-    // ------------------------------
-
     document.querySelectorAll("[data-user-role]").forEach((element) => {
       element.textContent = user.role || "Developer";
     });
 
-    // ------------------------------
     // Avatar
-    // ------------------------------
-
-    const initial = user.firstName?.charAt(0).toUpperCase() || "U";
+    const initials = getUserInitials(user);
 
     document.querySelectorAll("[data-user-avatar]").forEach((element) => {
-      element.textContent = initial;
-    });
-
-    // ------------------------------
-    // Logout buttons
-    // ------------------------------
-
-    document.querySelectorAll("[data-action='logout']").forEach((button) => {
-      button.addEventListener("click", () => {
-        CodeCollabUI.confirm({
-          title: "Log out?",
-          message:
-            "You will need to sign in again to access your CodeCollab account.",
-          confirmText: "Log out",
-          confirmClass: "btn-danger",
-          onConfirm: logout,
-        });
-      });
+      element.textContent = initials;
     });
   }
 
   // ==========================================
-  // PAGE AUTH GUARD
+  // PAGE INITIALIZATION
   // ==========================================
 
   function initializeAuth() {
@@ -218,24 +247,26 @@
   }
 
   // ==========================================
-  // EXPOSE API
+  // PUBLIC API
   // ==========================================
 
   window.CodeCollabAuth = {
     getUsers,
-    getCurrentUser,
+    saveUsers,
     getCurrentUserId,
+    getCurrentUser,
     isLoggedIn,
     login,
     logout,
     requireAuth,
     requireGuest,
     updateCurrentUser,
+    getUserInitials,
     renderAuthUI,
   };
 
   // ==========================================
-  // RUN
+  // START
   // ==========================================
 
   document.addEventListener("DOMContentLoaded", initializeAuth);

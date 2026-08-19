@@ -3,129 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CodeCollab — Build Better Together</title>
 
-    <!-- Bootstrap 5 CDN -->
+    <title>CodeCollab — Discover. Understand. Build.</title>
+
+    <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
     <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <!-- Google Fonts (Inter) -->
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Custom CSS -->
+    <!-- CodeCollab CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- ====== NAVBAR ====== -->
-    <!-- Fixed: Removed rigid height, uses natural Bootstrap padding. Logo perfectly centered. -->
-    <!-- ====== NAVBAR ====== -->
-    <nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
-      <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="index.html">
-          <img
-            src="assets/images/logo.png"
-            alt="CodeCollab"
-            class="navbar-logo"
-          />
-        </a>
+    <!-- =====================================
+         SHARED HEADER
+    ====================================== -->
 
-        <!-- Mobile Toggle -->
-        <button
-          class="navbar-toggler border-0 shadow-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="app-header"></div>
 
-        <!-- Navigation -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html"> Home </a>
-            </li>
+    <!-- =====================================
+         HERO
+    ====================================== -->
 
-            <li class="nav-item">
-              <a class="nav-link" href="features.html"> Features </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="how-it-works.html"> How It Works </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="projects.html"> Projects </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="about.html"> About </a>
-            </li>
-          </ul>
-
-          <!-- Auth -->
-          <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-            <a
-              href="login.html"
-              class="text-dark text-decoration-none fw-medium"
-            >
-              Log in
-            </a>
-
-            <a href="signup.html" class="btn btn-primary rounded-pill px-4">
-              Sign Up
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- ====== HERO SECTION ====== -->
     <section class="hero-section position-relative overflow-hidden pt-5 pb-5">
       <div class="container position-relative" style="z-index: 2">
         <div class="row align-items-center g-5">
-          <!-- Left Content -->
+          <!-- HERO CONTENT -->
+
           <div class="col-lg-6">
-            <!-- <span
+            <span
               class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 fw-medium"
             >
-              Built for developers, by developers
-            </span> -->
-            <h1 class="display-4 fw-bold mb-2 lh-1">
-              Build better <br />
-              <span class="text-primary">together</span>
+              Built for the next generation of developers
+            </span>
+
+            <h1 class="display-4 fw-bold mb-3 lh-1">
+              Discover how
+              <br />
+              developers
+              <span class="text-primary"> build. </span>
             </h1>
+
             <p class="text-muted fs-5 mb-4 max-w-500">
-              Connect with developers, discover projects, form teams, and build
-              amazing software together.
+              Explore real projects, understand how they work, learn from the
+              developers behind them and build with stronger foundations.
             </p>
+
             <div class="d-flex flex-wrap gap-3 mb-4">
               <a
-                href="#"
+                href="projects.html"
                 class="btn btn-primary rounded-pill px-4 py-2 fw-semibold"
-                >Find Developers</a
               >
+                Explore Projects
+              </a>
+
               <a
-                href="#"
+                href="signup.html"
                 class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold"
-                >Explore Projects</a
               >
+                Join CodeCollab
+              </a>
             </div>
+
+            <!-- COMMUNITY -->
+
             <div class="d-flex align-items-center gap-3">
               <div class="d-flex">
                 <img
@@ -133,37 +92,42 @@
                   class="rounded-circle border border-2 border-white"
                   width="40"
                   height="40"
-                  alt="User"
+                  alt="Developer"
                 />
+
                 <img
                   src="https://i.pravatar.cc/100?img=12"
                   class="rounded-circle border border-2 border-white ms-n3"
                   width="40"
                   height="40"
-                  alt="User"
+                  alt="Developer"
                 />
+
                 <img
                   src="https://i.pravatar.cc/100?img=33"
                   class="rounded-circle border border-2 border-white ms-n3"
                   width="40"
                   height="40"
-                  alt="User"
+                  alt="Developer"
                 />
+
                 <img
                   src="https://i.pravatar.cc/100?img=59"
                   class="rounded-circle border border-2 border-white ms-n3"
                   width="40"
                   height="40"
-                  alt="User"
+                  alt="Developer"
                 />
               </div>
-              <span class="text-muted small"
-                >Join 10,000+ developers building together</span
-              >
+
+              <span class="text-muted small">
+                Developers learning from what others build
+              </span>
             </div>
           </div>
 
-          <!-- Right Image -->
+          <!-- HERO IMAGE -->
+
           <div class="col-lg-6 text-center">
             <div class="hero-image-wrapper position-relative p-4">
               <div
@@ -175,12 +139,14 @@
               >
                 <img
                   src="assets/images/heropage-image.jpg"
-                  alt="CodeCollab Dashboard"
+                  alt="CodeCollab developer project"
                   class="img-fluid rounded-3"
                   style="max-height: 400px"
                 />
               </div>
-              <!-- Decorative blur circle -->
+
+              <!-- Decorative circle -->
+
               <div
                 class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle"
                 style="width: 300px; height: 300px; opacity: 0.05; z-index: -1"
@@ -191,331 +157,396 @@
       </div>
     </section>
 
-    <!-- ====== FEATURES ====== -->
-    <section id="features" class="py-5">
-      <div class="container">
-        <div class="text-center mb-5">
-          <span
-            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
-            >Features</span
-          >
-          <h2 class="display-6 fw-bold">Everything you need to collaborate</h2>
-        </div>
-        <div class="row g-4">
-          <!-- Feature 1 -->
-          <div class="col-md-6 col-lg-3">
-            <div
-              class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift"
-            >
-              <div
-                class="bg-primary bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3 mx-auto"
-              >
-                <i class="bi bi-people-fill fs-2 text-primary"></i>
-              </div>
-              <h5 class="fw-bold">Find Developers</h5>
-              <p class="text-muted small mb-0">
-                Discover and connect with skilled developers.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 2 -->
-          <div class="col-md-6 col-lg-3">
-            <div
-              class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift"
-            >
-              <div
-                class="bg-success bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3 mx-auto"
-              >
-                <i class="bi bi-folder2-open fs-2 text-success"></i>
-              </div>
-              <h5 class="fw-bold">Manage Projects</h5>
-              <p class="text-muted small mb-0">
-                Create projects and manage tasks easily.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 3 -->
-          <div class="col-md-6 col-lg-3">
-            <div
-              class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift"
-            >
-              <div
-                class="bg-warning bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3 mx-auto"
-              >
-                <i class="bi bi-chat-dots-fill fs-2 text-warning"></i>
-              </div>
-              <h5 class="fw-bold">Communicate</h5>
-              <p class="text-muted small mb-0">
-                Chat with your team in real-time.
-              </p>
-            </div>
-          </div>
-          <!-- Feature 4 -->
-          <div class="col-md-6 col-lg-3">
-            <div
-              class="card h-100 border-0 shadow-sm rounded-4 p-4 text-center hover-lift"
-            >
-              <div
-                class="bg-danger bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3 mx-auto"
-              >
-                <i class="bi bi-shield-fill-check fs-2 text-danger"></i>
-              </div>
-              <h5 class="fw-bold">Track Progress</h5>
-              <p class="text-muted small mb-0">
-                Track progress and stay on top of everything.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- =====================================
+         CORE IDEA
+    ====================================== -->
 
-    <!-- ====== HOW IT WORKS ====== -->
-    <section id="how-it-works" class="py-5 bg-white">
-      <div class="container">
-        <div class="text-center mb-5">
-          <span
-            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
-            >How It Works</span
-          >
-          <h2 class="display-6 fw-bold">Simple steps to get started</h2>
-        </div>
-        <div class="row justify-content-center g-4">
-          <!-- Step 1 -->
-          <div class="col-md-6 col-lg-3 text-center position-relative">
-            <div class="position-relative d-inline-block mb-3">
-              <div
-                class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
-                style="
-                  width: 60px;
-                  height: 60px;
-                  font-weight: 700;
-                  font-size: 1.2rem;
-                "
-              >
-                1
-              </div>
-              <div
-                class="bg-light rounded-circle position-absolute top-50 start-50 translate-middle"
-                style="width: 80px; height: 80px; z-index: -1; opacity: 0.5"
-              ></div>
-            </div>
-            <h5 class="fw-bold">Create Account</h5>
-            <p class="text-muted small">Sign up and create your profile.</p>
-          </div>
-          <!-- Step 2 -->
-          <div class="col-md-6 col-lg-3 text-center position-relative">
-            <div class="position-relative d-inline-block mb-3">
-              <div
-                class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
-                style="
-                  width: 60px;
-                  height: 60px;
-                  font-weight: 700;
-                  font-size: 1.2rem;
-                "
-              >
-                2
-              </div>
-              <div
-                class="bg-light rounded-circle position-absolute top-50 start-50 translate-middle"
-                style="width: 80px; height: 80px; z-index: -1; opacity: 0.5"
-              ></div>
-            </div>
-            <h5 class="fw-bold">Find or Create Project</h5>
-            <p class="text-muted small">
-              Find projects or create your own idea.
-            </p>
-          </div>
-          <!-- Step 3 -->
-          <div class="col-md-6 col-lg-3 text-center position-relative">
-            <div class="position-relative d-inline-block mb-3">
-              <div
-                class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
-                style="
-                  width: 60px;
-                  height: 60px;
-                  font-weight: 700;
-                  font-size: 1.2rem;
-                "
-              >
-                3
-              </div>
-              <div
-                class="bg-light rounded-circle position-absolute top-50 start-50 translate-middle"
-                style="width: 80px; height: 80px; z-index: -1; opacity: 0.5"
-              ></div>
-            </div>
-            <h5 class="fw-bold">Connect & Collaborate</h5>
-            <p class="text-muted small">
-              Connect with teammates and start working.
-            </p>
-          </div>
-          <!-- Step 4 -->
-          <div class="col-md-6 col-lg-3 text-center position-relative">
-            <div class="position-relative d-inline-block mb-3">
-              <div
-                class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto"
-                style="
-                  width: 60px;
-                  height: 60px;
-                  font-weight: 700;
-                  font-size: 1.2rem;
-                "
-              >
-                4
-              </div>
-              <div
-                class="bg-light rounded-circle position-absolute top-50 start-50 translate-middle"
-                style="width: 80px; height: 80px; z-index: -1; opacity: 0.5"
-              ></div>
-            </div>
-            <h5 class="fw-bold">Build & Launch</h5>
-            <p class="text-muted small">
-              Build awesome projects and launch to the world.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== CTA SECTION ====== -->
     <section class="py-5">
       <div class="container">
-        <div
-          class="bg-primary bg-opacity-10 rounded-4 p-5 text-center position-relative overflow-hidden"
-        >
-          <div
-            class="position-absolute top-0 start-0 m-3 text-primary opacity-25"
+        <div class="text-center mb-5">
+          <span
+            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
           >
-            <i class="bi bi-code-square fs-1"></i>
+            The CodeCollab Experience
+          </span>
+
+          <h2 class="display-6 fw-bold mt-3">Discover. Understand. Build.</h2>
+
+          <p class="text-muted mx-auto max-w-500 mt-3">
+            CodeCollab gives developers the context around the code, not just
+            the repository.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- DISCOVER -->
+
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+              <div
+                class="bg-primary bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3"
+              >
+                <i class="bi bi-compass fs-2 text-primary"></i>
+              </div>
+
+              <h5 class="fw-bold">Discover Projects</h5>
+
+              <p class="text-muted small mb-0">
+                Find real applications, experiments and developer projects worth
+                exploring.
+              </p>
+            </div>
           </div>
-          <div class="position-relative" style="z-index: 2">
-            <h3 class="display-6 fw-bold mb-3">
-              Ready to build something great?
-            </h3>
-            <p class="text-muted mb-4">
-              Join thousands of developers and start building together.
-            </p>
-            <a
-              href="#"
-              class="btn btn-primary rounded-pill px-5 py-3 fw-semibold"
-              >Get Started for Free</a
-            >
+
+          <!-- UNDERSTAND -->
+
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+              <div
+                class="bg-primary bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3"
+              >
+                <i class="bi bi-diagram-3 fs-2 text-primary"></i>
+              </div>
+
+              <h5 class="fw-bold">Understand the Code</h5>
+
+              <p class="text-muted small mb-0">
+                Explore architecture, technologies, decisions, challenges and
+                developer insights.
+              </p>
+            </div>
+          </div>
+
+          <!-- BUILD -->
+
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
+              <div
+                class="bg-primary bg-opacity-10 rounded-3 d-inline-flex p-3 mb-3"
+              >
+                <i class="bi bi-code-slash fs-2 text-primary"></i>
+              </div>
+
+              <h5 class="fw-bold">Build With Confidence</h5>
+
+              <p class="text-muted small mb-0">
+                Explore repositories, clone projects and use what you learn to
+                build your own.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== FOOTER ====== -->
-    <!-- Fixed: Footer logo is 60px tall, perfectly sized to be big and visible -->
+    <!-- =====================================
+         AI ERA
+    ====================================== -->
+
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <span
+              class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+            >
+              Built for the AI Era
+            </span>
+
+            <h2 class="display-6 fw-bold mt-3 mb-4">
+              AI should make developers faster — not make them dependent.
+            </h2>
+
+            <p class="text-muted fs-5">
+              CodeCollab helps developers develop the foundations needed to
+              understand, question, review and improve the code AI helps them
+              create.
+            </p>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="bg-white border rounded-4 p-4 shadow-sm">
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                  <i class="bi bi-stars text-primary"></i>
+                </div>
+
+                <div>
+                  <h6 class="fw-bold mb-1">Use AI</h6>
+
+                  <p class="text-muted small mb-0">Accelerate your workflow.</p>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                  <i class="bi bi-lightbulb text-primary"></i>
+                </div>
+
+                <div>
+                  <h6 class="fw-bold mb-1">Understand</h6>
+
+                  <p class="text-muted small mb-0">
+                    Know what you're building.
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center gap-3">
+                <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                  <i class="bi bi-shield-check text-primary"></i>
+                </div>
+
+                <div>
+                  <h6 class="fw-bold mb-1">Build Better</h6>
+
+                  <p class="text-muted small mb-0">
+                    Make better technical decisions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================
+         HOW IT WORKS
+    ====================================== -->
+
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span
+            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+          >
+            How It Works
+          </span>
+
+          <h2 class="display-6 fw-bold mt-3">From discovery to building</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 text-center">
+            <div
+              class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+              style="
+                width: 60px;
+                height: 60px;
+                font-weight: 700;
+                font-size: 1.2rem;
+              "
+            >
+              1
+            </div>
+
+            <h5 class="fw-bold">Discover</h5>
+
+            <p class="text-muted small">Find a project worth learning from.</p>
+          </div>
+
+          <div class="col-md-6 col-lg-3 text-center">
+            <div
+              class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+              style="
+                width: 60px;
+                height: 60px;
+                font-weight: 700;
+                font-size: 1.2rem;
+              "
+            >
+              2
+            </div>
+
+            <h5 class="fw-bold">Understand</h5>
+
+            <p class="text-muted small">Learn how the project works.</p>
+          </div>
+
+          <div class="col-md-6 col-lg-3 text-center">
+            <div
+              class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+              style="
+                width: 60px;
+                height: 60px;
+                font-weight: 700;
+                font-size: 1.2rem;
+              "
+            >
+              3
+            </div>
+
+            <h5 class="fw-bold">Connect</h5>
+
+            <p class="text-muted small">
+              Ask questions and connect with developers.
+            </p>
+          </div>
+
+          <div class="col-md-6 col-lg-3 text-center">
+            <div
+              class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+              style="
+                width: 60px;
+                height: 60px;
+                font-weight: 700;
+                font-size: 1.2rem;
+              "
+            >
+              4
+            </div>
+
+            <h5 class="fw-bold">Build</h5>
+
+            <p class="text-muted small">
+              Clone, experiment and build your own.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================
+         CTA
+    ====================================== -->
+
+    <section class="py-5">
+      <div class="container">
+        <div class="bg-primary bg-opacity-10 rounded-4 p-5 text-center">
+          <h3 class="display-6 fw-bold mb-3">
+            Discover what developers are building.
+          </h3>
+
+          <p class="text-muted mb-4">
+            Learn from real projects and build with stronger foundations.
+          </p>
+
+          <a
+            href="projects.html"
+            class="btn btn-primary rounded-pill px-5 py-3 fw-semibold"
+          >
+            Explore Projects
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
     <footer class="bg-white border-top py-5">
       <div class="container">
         <div class="row g-4">
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <img
-                src="assets/images/logo.png"
-                alt="CodeCollab"
-                style="height: 200px; width: auto; display: block"
-              />
-            </div>
-            <p class="text-muted small mb-4">
-              The collaboration platform for developers. Build better together.
+          <div class="col-lg-5">
+            <img
+              src="assets/images/logo.png"
+              alt="CodeCollab"
+              class="footer-logo"
+            />
+
+            <p class="text-muted small mt-3">
+              Discover how developers build. Learn from real projects. Build
+              with confidence.
             </p>
-            <div class="d-flex gap-3">
-              <a href="#" class="text-dark fs-5"
-                ><i class="bi bi-github"></i
-              ></a>
-              <a href="#" class="text-dark fs-5"
-                ><i class="bi bi-twitter-x"></i
-              ></a>
-              <a href="#" class="text-dark fs-5"
-                ><i class="bi bi-linkedin"></i
-              ></a>
+
+            <div class="d-flex gap-3 mt-3">
+              <a href="#" class="text-dark fs-5">
+                <i class="bi bi-github"></i>
+              </a>
+
+              <a href="#" class="text-dark fs-5">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+
+              <a href="#" class="text-dark fs-5">
+                <i class="bi bi-linkedin"></i>
+              </a>
             </div>
           </div>
+
           <div class="col-6 col-md-2">
             <h6 class="fw-bold mb-3">Platform</h6>
+
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Features</a>
+                <a href="features.html" class="text-muted text-decoration-none">
+                  Features
+                </a>
               </li>
+
               <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none"
-                  >How It Works</a
+                <a href="projects.html" class="text-muted text-decoration-none">
+                  Projects
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a
+                  href="how-it-works.html"
+                  class="text-muted text-decoration-none"
                 >
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Projects</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Pricing</a>
+                  How It Works
+                </a>
               </li>
             </ul>
           </div>
+
           <div class="col-6 col-md-2">
             <h6 class="fw-bold mb-3">Company</h6>
+
             <ul class="list-unstyled small">
               <li class="mb-2">
-                <a href="/about.html" class="text-muted text-decoration-none"
-                  >About Us</a
-                >
+                <a href="about.html" class="text-muted text-decoration-none">
+                  About
+                </a>
               </li>
+
               <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Careers</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Contact</a>
+                <a href="#" class="text-muted text-decoration-none">
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
-          <div class="col-6 col-md-2">
-            <h6 class="fw-bold mb-3">Resources</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none">Blog</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none"
-                  >Help Center</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none"
-                  >Privacy Policy</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-muted text-decoration-none"
-                  >Terms of Service</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
+
+          <div class="col-md-3">
             <h6 class="fw-bold mb-3">Stay Updated</h6>
-            <p class="text-muted small mb-3">
-              Get the latest updates and news.
-            </p>
+
+            <p class="text-muted small mb-3">Get updates from CodeCollab.</p>
+
             <div class="input-group">
               <input
                 type="email"
-                class="form-control border-end-0"
-                placeholder="Enter your email"
+                class="form-control"
+                placeholder="Your email"
               />
+
               <button class="btn btn-primary" type="button">Subscribe</button>
             </div>
           </div>
         </div>
+
         <hr class="my-4" />
+
         <div class="text-center text-muted small">
-          &copy; 2025 CodeCollab. All rights reserved.
+          &copy; 2026 CodeCollab. All rights reserved.
         </div>
       </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- =====================================
+         SCRIPTS
+    ====================================== -->
+
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CodeCollab Authentication -->
+    <script src="../js/auth.js"></script>
+
+    <!-- Shared Header -->
+    <script src="../components/header.js"></script>
   </body>
 </html>

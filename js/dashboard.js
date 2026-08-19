@@ -1,39 +1,26 @@
+// ==========================================
+// CODECOLLAB DASHBOARD
+// dashboard.js
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // STORAGE KEYS
-  // ==========================================
-
-  const USERS_KEY = "codecollabUsers";
-  const CURRENT_USER_KEY = "codecollabCurrentUser";
+  "use strict";
 
   // ==========================================
-  // GET CURRENT SESSION
+  // AUTH GUARD
   // ==========================================
 
-  const currentUserId = localStorage.getItem(CURRENT_USER_KEY);
-
-  // No logged-in user → return to login
-  if (!currentUserId) {
-    window.location.href = "login.html";
+  if (!window.CodeCollabAuth?.requireAuth()) {
     return;
   }
 
   // ==========================================
-  // GET USERS
+  // CURRENT USER
   // ==========================================
 
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+  const currentUser = CodeCollabAuth.getCurrentUser();
 
-  // ==========================================
-  // FIND CURRENT USER
-  // ==========================================
-
-  const currentUser = users.find((user) => user.id === currentUserId);
-
-  // Session exists but user doesn't
   if (!currentUser) {
-    localStorage.removeItem(CURRENT_USER_KEY);
-    window.location.href = "login.html";
     return;
   }
 
@@ -45,62 +32,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navUserName = document.getElementById("navUserName");
 
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  const sidebarLogoutBtn = document.getElementById("sidebarLogoutBtn");
+  const avatarElements = document.querySelectorAll(".dashboard-avatar");
 
   // ==========================================
-  // DISPLAY USER INFORMATION
+  // USER NAME
   // ==========================================
 
   if (welcomeUserName) {
-    welcomeUserName.textContent = currentUser.firstName;
+    welcomeUserName.textContent = currentUser.firstName || "Developer";
   }
 
   if (navUserName) {
-    navUserName.textContent = currentUser.firstName;
+    navUserName.textContent = currentUser.firstName || "Developer";
   }
 
   // ==========================================
   // USER AVATAR
   // ==========================================
 
-  const avatarElements = document.querySelectorAll(
-    ".dashboard-avatar, .post-avatar",
-  );
-
   const firstLetter = currentUser.firstName?.charAt(0).toUpperCase() || "U";
 
   avatarElements.forEach((avatar) => {
-    // Only change dashboard user's avatar.
-    // We leave post avatars untouched.
-    if (avatar.classList.contains("dashboard-avatar")) {
-      avatar.textContent = firstLetter;
-    }
+    avatar.textContent = firstLetter;
   });
 
   // ==========================================
-  // LOGOUT FUNCTION
+  // DEBUG
   // ==========================================
 
-  function logout() {
-    localStorage.removeItem(CURRENT_USER_KEY);
-
-    window.location.href = "login.html";
-  }
-
-  // ==========================================
-  // LOGOUT EVENTS
-  // ==========================================
-
-  logoutBtn?.addEventListener("click", logout);
-
-  sidebarLogoutBtn?.addEventListener("click", logout);
-
-  // ==========================================
-  // OPTIONAL: SHOW USER INFO IN CONSOLE
-  // Useful while learning/debugging
-  // ==========================================
-
-  console.log("Logged in user:", currentUser);
+  console.log("CodeCollab current user:", currentUser);
 });
