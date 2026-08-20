@@ -1,36 +1,23 @@
+// ==========================================
+// CODECOLLAB SIGNUP
+// signup.js
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", () => {
-  const signupForm = document.querySelector("form");
-  const passwordInput = document.getElementById("password");
-  const passwordToggle = document.querySelector(".password-toggle");
+  "use strict";
 
-  const USERS_KEY = "codecollabUsers";
-  const CURRENT_USER_KEY = "codecollabCurrentUser";
+  const form = document.getElementById("signupForm");
 
-  // -------------------------------
-  // Password visibility toggle
-  // -------------------------------
+  if (!form) {
+    return;
+  }
 
-  passwordToggle?.addEventListener("click", () => {
-    const isPassword = passwordInput.type === "password";
-
-    passwordInput.type = isPassword ? "text" : "password";
-
-    passwordToggle.innerHTML = isPassword
-      ? '<i class="bi bi-eye-slash"></i>'
-      : '<i class="bi bi-eye"></i>';
-
-    passwordToggle.setAttribute(
-      "aria-label",
-      isPassword ? "Hide password" : "Show password",
-    );
-  });
-
-  // -------------------------------
-  // Signup
-  // -------------------------------
-
-  signupForm.addEventListener("submit", (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    // ==========================================
+    // GET FORM VALUES
+    // ==========================================
 
     const firstName = document.getElementById("firstName").value.trim();
 
@@ -43,108 +30,141 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("email").value.trim().toLowerCase();
 
-    const password = passwordInput.value;
+    const password = document.getElementById("password").value;
 
     const role = document.getElementById("role").value;
 
-    const termsAccepted = document.getElementById("terms").checked;
+    // ==========================================
+    // VALIDATION
+    // ==========================================
 
-    // -------------------------------
-    // Validation
-    // -------------------------------
+    if (!firstName || !lastName || !username || !email || !password || !role) {
+      CodeCollabUI.toast(
+        "Please complete all required fields.",
+        "warning",
+        "Missing Information",
+      );
 
-    if (!firstName || !lastName || !username || !email || !password) {
-      alert("Please complete all required fields.");
       return;
     }
 
-    if (role === "Select your role") {
-      alert("Please select your developer role.");
-      return;
-    }
+    // ==========================================
+    // USERNAME VALIDATION
+    // ==========================================
 
-    if (!termsAccepted) {
-      alert("You must agree to the Terms of Service.");
-      return;
-    }
-
-    if (password.length < 8) {
-      alert("Password must contain at least 8 characters.");
-      return;
-    }
-
-    // Username validation
     const usernamePattern = /^[a-zA-Z0-9_]+$/;
 
     if (!usernamePattern.test(username)) {
-      alert("Username can only contain letters, numbers and underscores.");
+      CodeCollabUI.toast(
+        "Username can only contain letters, numbers and underscores.",
+        "error",
+        "Invalid Username",
+      );
+
       return;
     }
 
-    // -------------------------------
-    // Get existing users
-    // -------------------------------
+    // ==========================================
+    // PASSWORD VALIDATION
+    // ==========================================
 
-    const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+    if (password.length < 6) {
+      CodeCollabUI.toast(
+        "Your password must contain at least 6 characters.",
+        "warning",
+        "Weak Password",
+      );
 
-    // -------------------------------
-    // Check duplicate email
-    // -------------------------------
+      return;
+    }
 
-    const emailExists = users.some((user) => user.email === email);
+    // ==========================================
+    // GET EXISTING USERS
+    // ==========================================
+
+    const users = CodeCollabAuth.getUsers();
+
+    // ==========================================
+    // CHECK DUPLICATES
+    // ==========================================
+
+    const emailExists = users.some(
+      (user) => user.email?.toLowerCase() === email,
+    );
 
     if (emailExists) {
-      alert("An account with this email already exists.");
+      CodeCollabUI.toast(
+        "An account with this email already exists.",
+        "error",
+        "Email Already Registered",
+      );
+
       return;
     }
 
-    // -------------------------------
-    // Check duplicate username
-    // -------------------------------
-
-    const usernameExists = users.some((user) => user.username === username);
+    const usernameExists = users.some(
+      (user) => user.username?.toLowerCase() === username,
+    );
 
     if (usernameExists) {
-      alert("This username is already taken.");
+      CodeCollabUI.toast(
+        "This username is already taken. Please choose another one.",
+        "error",
+        "Username Unavailable",
+      );
+
       return;
     }
 
-    // -------------------------------
-    // Create user
-    // -------------------------------
+    // ==========================================
+    // CREATE USER
+    // ==========================================
 
-    const user = {
-      id: `cc_${Date.now()}`,
+    const newUser = {
+      id: crypto.randomUUID(),
+
       firstName,
       lastName,
+
       username,
+
       email,
+
       password,
+
       role,
-      bio: "",
-      avatar: "",
-      skills: [],
+
       createdAt: new Date().toISOString(),
     };
 
-    // -------------------------------
-    // Save user
-    // -------------------------------
+    // ==========================================
+    // SAVE USER
+    // ==========================================
 
-    users.push(user);
+    CodeCollabAuth.saveUsers([...users, newUser]);
 
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    // ==========================================
+    // CREATE SESSION
+    // ==========================================
 
-    // -------------------------------
-    // Save current session
-    // -------------------------------
+    CodeCollabAuth.login(newUser.id, true);
 
-    localStorage.setItem(CURRENT_USER_KEY, user.id);
+    // ==========================================
+    // SUCCESS
+    // ==========================================
 
-    // -------------------------------
-    // Redirect
-    // -------------------------------
+    CodeCollabUI.toast(
+      `Welcome to CodeCollab, ${firstName}!`,
+      "success",
+      "Account Created",
+    );
 
-    window.location.href = "dashboard.html";
+    // ==========================================
+    // REDIRECT
+    // ==========================================
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
   });
 });

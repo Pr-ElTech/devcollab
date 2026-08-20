@@ -1,35 +1,33 @@
+// ==========================================
+// CODECOLLAB CREATE SYSTEM
+// create.js
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+
   // ==========================================
   // STORAGE KEYS
   // ==========================================
 
-  const USERS_KEY = "codecollabUsers";
-  const CURRENT_USER_KEY = "codecollabCurrentUser";
   const POSTS_KEY = "codecollabPosts";
   const PROJECTS_KEY = "codecollabProjects";
 
   // ==========================================
-  // CHECK LOGIN SESSION
+  // AUTH GUARD
   // ==========================================
 
-  const currentUserId = localStorage.getItem(CURRENT_USER_KEY);
-
-  if (!currentUserId) {
-    window.location.href = "login.html";
+  if (!window.CodeCollabAuth?.requireAuth()) {
     return;
   }
 
   // ==========================================
-  // GET USERS
+  // CURRENT USER
   // ==========================================
 
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-
-  const currentUser = users.find((user) => user.id === currentUserId);
+  const currentUser = window.CodeCollabAuth.getCurrentUser();
 
   if (!currentUser) {
-    localStorage.removeItem(CURRENT_USER_KEY);
-    window.location.href = "login.html";
     return;
   }
 
@@ -53,25 +51,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const projectForm = document.getElementById("projectForm");
 
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  const sidebarLogoutBtn = document.getElementById("sidebarLogoutBtn");
-
-  const navUserName = document.getElementById("navUserName");
-
-  const navUserAvatar = document.getElementById("navUserAvatar");
-
   // ==========================================
-  // DISPLAY CURRENT USER
+  // HELPER: READ ARRAY FROM LOCAL STORAGE
   // ==========================================
 
-  if (navUserName) {
-    navUserName.textContent = currentUser.firstName;
+  function getStoredArray(key) {
+    try {
+      const stored = JSON.parse(localStorage.getItem(key));
+
+      return Array.isArray(stored) ? stored : [];
+    } catch (error) {
+      console.error(`CodeCollab: Could not read ${key}.`, error);
+
+      return [];
+    }
   }
 
-  if (navUserAvatar) {
-    navUserAvatar.textContent =
-      currentUser.firstName?.charAt(0).toUpperCase() || "U";
+  // ==========================================
+  // HELPER: SAVE ARRAY TO LOCAL STORAGE
+  // ==========================================
+
+  function saveArray(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  // ==========================================
+  // AUTHOR SNAPSHOT
+  // ==========================================
+
+  function createAuthorSnapshot() {
+    return {
+      id: currentUser.id,
+      firstName: currentUser.firstName || "",
+      lastName: currentUser.lastName || "",
+      username: currentUser.username || "",
+      role: currentUser.role || "Developer",
+    };
   }
 
   // ==========================================
@@ -79,8 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
 
   postOptionBtn?.addEventListener("click", () => {
+    if (!postFormSection) {
+      return;
+    }
+
     postFormSection.classList.remove("d-none");
-    projectFormSection.classList.add("d-none");
+
+    projectFormSection?.classList.add("d-none");
 
     postFormSection.scrollIntoView({
       behavior: "smooth",
@@ -93,8 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
 
   projectOptionBtn?.addEventListener("click", () => {
+    if (!projectFormSection) {
+      return;
+    }
+
     projectFormSection.classList.remove("d-none");
-    postFormSection.classList.add("d-none");
+
+    postFormSection?.classList.add("d-none");
 
     projectFormSection.scrollIntoView({
       behavior: "smooth",
@@ -107,8 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
 
   cancelPostBtn?.addEventListener("click", () => {
-    postForm.reset();
-    postFormSection.classList.add("d-none");
+    postForm?.reset();
+
+    postFormSection?.classList.add("d-none");
   });
 
   // ==========================================
@@ -116,8 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
 
   cancelProjectBtn?.addEventListener("click", () => {
-    projectForm.reset();
-    projectFormSection.classList.add("d-none");
+    projectForm?.reset();
+
+    projectFormSection?.classList.add("d-none");
   });
 
   // ==========================================
@@ -127,80 +154,108 @@ document.addEventListener("DOMContentLoaded", () => {
   postForm?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const title = document.getElementById("postTitle").value.trim();
+    // ----------------------------------------
+    // GET VALUES
+    // ----------------------------------------
 
-    const content = document.getElementById("postContent").value.trim();
+    const titleInput = document.getElementById("postTitle");
 
-    const tagsInput = document.getElementById("postTags").value.trim();
+    const contentInput = document.getElementById("postContent");
 
-    // ------------------------------------------
-    // Validation
-    // ------------------------------------------
+    const tagsInput = document.getElementById("postTags");
+
+    const title = titleInput?.value.trim() || "";
+
+    const content = contentInput?.value.trim() || "";
+
+    const tagsValue = tagsInput?.value.trim() || "";
+
+    // ----------------------------------------
+    // VALIDATION
+    // ----------------------------------------
 
     if (!title || !content) {
-      alert("Please complete the post title and content.");
+      window.CodeCollabUI?.toast(
+        "Please complete the post title and content.",
+        "warning",
+        "Missing Information",
+      );
+
       return;
     }
 
-    // ------------------------------------------
-    // Convert tags into an array
-    // ------------------------------------------
+    // ----------------------------------------
+    // TAGS
+    // ----------------------------------------
 
-    const tags = tagsInput
-      ? tagsInput
+    const tags = tagsValue
+      ? tagsValue
           .split(",")
           .map((tag) => tag.trim())
-          .filter((tag) => tag.length > 0)
+          .filter(Boolean)
       : [];
 
-    // ------------------------------------------
-    // Get existing posts
-    // ------------------------------------------
+    // ----------------------------------------
+    // EXISTING POSTS
+    // ----------------------------------------
 
-    const posts = JSON.parse(localStorage.getItem(POSTS_KEY)) || [];
+    const posts = getStoredArray(POSTS_KEY);
 
-    // ------------------------------------------
-    // Create post
-    // ------------------------------------------
+    // ----------------------------------------
+    // CREATE POST
+    // ----------------------------------------
 
     const newPost = {
       id: `post_${Date.now()}`,
+
       type: "post",
 
       title,
+
       content,
+
       tags,
 
-      author: {
-        id: currentUser.id,
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        username: currentUser.username,
-        role: currentUser.role,
-      },
+      author: createAuthorSnapshot(),
 
       likes: 0,
+
       comments: [],
+
       createdAt: new Date().toISOString(),
     };
 
-    // ------------------------------------------
-    // Save post
-    // ------------------------------------------
+    // ----------------------------------------
+    // SAVE
+    // ----------------------------------------
 
     posts.unshift(newPost);
 
-    localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+    saveArray(POSTS_KEY, posts);
 
-    // ------------------------------------------
-    // Success
-    // ------------------------------------------
+    // ----------------------------------------
+    // FEEDBACK
+    // ----------------------------------------
 
-    alert("Your post has been published.");
+    window.CodeCollabUI?.toast(
+      "Your post has been published successfully.",
+      "success",
+      "Post Published",
+    );
+
+    // ----------------------------------------
+    // RESET
+    // ----------------------------------------
 
     postForm.reset();
 
-    window.location.href = "dashboard.html";
+    // ----------------------------------------
+    // REDIRECT
+    // ----------------------------------------
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 900);
   });
 
   // ==========================================
@@ -210,106 +265,121 @@ document.addEventListener("DOMContentLoaded", () => {
   projectForm?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = document.getElementById("projectName").value.trim();
+    // ----------------------------------------
+    // GET VALUES
+    // ----------------------------------------
 
-    const description = document
-      .getElementById("projectDescription")
-      .value.trim();
+    const nameInput = document.getElementById("projectName");
 
-    const technologiesInput = document
-      .getElementById("projectTechnologies")
-      .value.trim();
+    const descriptionInput = document.getElementById("projectDescription");
 
-    const repositoryUrl = document.getElementById("projectRepo").value.trim();
+    const technologiesInput = document.getElementById("projectTechnologies");
 
-    const liveUrl = document.getElementById("projectLiveUrl").value.trim();
+    const repositoryInput = document.getElementById("projectRepo");
 
-    // ------------------------------------------
-    // Validation
-    // ------------------------------------------
+    const liveUrlInput = document.getElementById("projectLiveUrl");
+
+    const name = nameInput?.value.trim() || "";
+
+    const description = descriptionInput?.value.trim() || "";
+
+    const technologiesValue = technologiesInput?.value.trim() || "";
+
+    const repositoryUrl = repositoryInput?.value.trim() || "";
+
+    const liveUrl = liveUrlInput?.value.trim() || "";
+
+    // ----------------------------------------
+    // VALIDATION
+    // ----------------------------------------
 
     if (!name || !description) {
-      alert("Please enter a project name and description.");
+      window.CodeCollabUI?.toast(
+        "Please enter a project name and description.",
+        "warning",
+        "Missing Information",
+      );
+
       return;
     }
 
-    // ------------------------------------------
-    // Convert technologies into an array
-    // ------------------------------------------
+    // ----------------------------------------
+    // TECHNOLOGIES
+    // ----------------------------------------
 
-    const technologies = technologiesInput
-      ? technologiesInput
+    const technologies = technologiesValue
+      ? technologiesValue
           .split(",")
           .map((technology) => technology.trim())
-          .filter((technology) => technology.length > 0)
+          .filter(Boolean)
       : [];
 
-    // ------------------------------------------
-    // Get existing projects
-    // ------------------------------------------
+    // ----------------------------------------
+    // EXISTING PROJECTS
+    // ----------------------------------------
 
-    const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
+    const projects = getStoredArray(PROJECTS_KEY);
 
-    // ------------------------------------------
-    // Create project
-    // ------------------------------------------
+    // ----------------------------------------
+    // CREATE PROJECT
+    // ----------------------------------------
 
     const newProject = {
       id: `project_${Date.now()}`,
+
       type: "project",
 
       name,
+
       description,
+
       technologies,
 
       repositoryUrl,
+
       liveUrl,
 
-      author: {
-        id: currentUser.id,
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        username: currentUser.username,
-        role: currentUser.role,
-      },
+      author: createAuthorSnapshot(),
 
       stars: 0,
+
       forks: 0,
+
       contributors: [],
 
       createdAt: new Date().toISOString(),
     };
 
-    // ------------------------------------------
-    // Save project
-    // ------------------------------------------
+    // ----------------------------------------
+    // SAVE
+    // ----------------------------------------
 
     projects.unshift(newProject);
 
-    localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+    saveArray(PROJECTS_KEY, projects);
 
-    // ------------------------------------------
-    // Success
-    // ------------------------------------------
+    // ----------------------------------------
+    // FEEDBACK
+    // ----------------------------------------
 
-    alert("Your project has been published.");
+    window.CodeCollabUI?.toast(
+      "Your project has been published successfully.",
+      "success",
+      "Project Published",
+    );
+
+    // ----------------------------------------
+    // RESET
+    // ----------------------------------------
 
     projectForm.reset();
 
-    window.location.href = "projects.html";
+    // ----------------------------------------
+    // REDIRECT
+    // ----------------------------------------
+
+    setTimeout(() => {
+      window.location.href = "projects.html";
+    }, 900);
   });
-
-  // ==========================================
-  // LOGOUT
-  // ==========================================
-
-  function logout() {
-    localStorage.removeItem(CURRENT_USER_KEY);
-
-    window.location.href = "login.html";
-  }
-
-  logoutBtn?.addEventListener("click", logout);
-
-  sidebarLogoutBtn?.addEventListener("click", logout);
 });

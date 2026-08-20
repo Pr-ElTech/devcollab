@@ -6,20 +6,30 @@
 
     <title>Dashboard | CodeCollab</title>
 
-    <!-- Bootstrap 5 -->
+    <!-- ==========================================
+         BOOTSTRAP
+    =========================================== -->
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
-    <!-- Bootstrap Icons -->
+    <!-- ==========================================
+         BOOTSTRAP ICONS
+    =========================================== -->
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
-    <!-- Google Font -->
+    <!-- ==========================================
+         GOOGLE FONT
+    =========================================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
@@ -27,23 +37,28 @@
       rel="stylesheet"
     />
 
-    <!-- Custom CSS -->
+    <!-- ==========================================
+         CODECOLLAB CSS
+    =========================================== -->
+
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body class="dashboard-page" data-auth="required">
-    <!-- =====================================================
-         TOP NAVBAR
-    ====================================================== -->
+    <!-- ==========================================
+         DASHBOARD HEADER
+    =========================================== -->
 
     <header class="dashboard-header border-bottom bg-white">
       <div class="container-fluid px-3 px-lg-4">
         <div
           class="d-flex align-items-center justify-content-between gap-3 py-3"
         >
-          <!-- Brand -->
+          <!-- =====================================
+               BRAND + MOBILE SIDEBAR
+          ====================================== -->
+
           <div class="d-flex align-items-center">
-            <!-- Mobile sidebar button -->
             <button
               class="btn btn-light d-lg-none me-2"
               type="button"
@@ -64,7 +79,10 @@
             </a>
           </div>
 
-          <!-- Search -->
+          <!-- =====================================
+               DESKTOP SEARCH
+          ====================================== -->
+
           <div class="dashboard-search flex-grow-1 d-none d-md-block">
             <div class="input-group">
               <span class="input-group-text bg-light border-end-0">
@@ -74,27 +92,35 @@
               <input
                 type="search"
                 class="form-control bg-light border-start-0"
-                placeholder="Search posts, projects, people..."
+                placeholder="Search projects, people..."
                 aria-label="Search CodeCollab"
+                id="dashboardSearch"
               />
             </div>
           </div>
 
-          <!-- Right navigation -->
+          <!-- =====================================
+               RIGHT HEADER ACTIONS
+          ====================================== -->
+
           <div class="d-flex align-items-center gap-2">
             <!-- Mobile search -->
+
             <button
               class="btn btn-light d-md-none"
               type="button"
+              id="mobileSearchBtn"
               aria-label="Search"
             >
               <i class="bi bi-search"></i>
             </button>
 
             <!-- Notifications -->
+
             <button
               class="btn btn-light position-relative"
               type="button"
+              id="notificationBtn"
               aria-label="Notifications"
             >
               <i class="bi bi-bell fs-5"></i>
@@ -107,6 +133,7 @@
             </button>
 
             <!-- User -->
+
             <div class="dropdown">
               <button
                 class="btn btn-light d-flex align-items-center gap-2"
@@ -114,10 +141,14 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <div class="dashboard-avatar">P</div>
+                <div class="dashboard-avatar" data-user-avatar>U</div>
 
-                <span class="d-none d-lg-inline fw-semibold" id="navUserName">
-                  Promise
+                <span
+                  class="d-none d-lg-inline fw-semibold"
+                  id="navUserName"
+                  data-user-name
+                >
+                  Developer
                 </span>
 
                 <i class="bi bi-chevron-down small"></i>
@@ -157,8 +188,11 @@
           </div>
         </div>
 
-        <!-- Mobile search -->
-        <div class="d-md-none pb-3">
+        <!-- =====================================
+             MOBILE SEARCH
+        ====================================== -->
+
+        <div class="d-md-none pb-3" id="mobileSearchContainer">
           <div class="input-group">
             <span class="input-group-text bg-light border-end-0">
               <i class="bi bi-search text-muted"></i>
@@ -167,23 +201,24 @@
             <input
               type="search"
               class="form-control bg-light border-start-0"
-              placeholder="Search posts, projects, people..."
+              placeholder="Search projects, people..."
               aria-label="Search CodeCollab"
+              id="mobileDashboardSearch"
             />
           </div>
         </div>
       </div>
     </header>
 
-    <!-- =====================================================
-         DASHBOARD LAYOUT
-    ====================================================== -->
+    <!-- ==========================================
+         DASHBOARD BODY
+    =========================================== -->
 
     <div class="container-fluid">
       <div class="row">
-        <!-- =================================================
+        <!-- =======================================
              SIDEBAR
-        ================================================== -->
+        ======================================== -->
 
         <aside
           class="offcanvas-lg offcanvas-start col-lg-2 dashboard-sidebar"
@@ -192,6 +227,7 @@
           aria-labelledby="dashboardSidebarLabel"
         >
           <!-- Mobile sidebar header -->
+
           <div class="offcanvas-header d-lg-none">
             <h5 class="offcanvas-title fw-bold" id="dashboardSidebarLabel">
               CodeCollab
@@ -206,8 +242,11 @@
             ></button>
           </div>
 
+          <!-- Sidebar content -->
+
           <div class="offcanvas-body d-flex flex-column p-3 p-lg-0">
-            <!-- Navigation -->
+            <!-- Workspace -->
+
             <nav class="dashboard-nav mt-lg-4">
               <p class="dashboard-nav-label text-uppercase small fw-semibold">
                 Workspace
@@ -235,28 +274,30 @@
             </nav>
 
             <!-- Discover -->
+
             <nav class="dashboard-nav mt-4">
               <p class="dashboard-nav-label text-uppercase small fw-semibold">
                 Discover
               </p>
 
-              <a href="#" class="dashboard-nav-link">
+              <a href="explore.html" class="dashboard-nav-link">
                 <i class="bi bi-compass"></i>
                 <span>Explore</span>
               </a>
 
-              <a href="#" class="dashboard-nav-link">
+              <a href="explore.html" class="dashboard-nav-link">
                 <i class="bi bi-people"></i>
                 <span>People</span>
               </a>
 
-              <a href="#" class="dashboard-nav-link">
+              <a href="saved.html" class="dashboard-nav-link">
                 <i class="bi bi-bookmark"></i>
                 <span>Saved</span>
               </a>
             </nav>
 
             <!-- Bottom -->
+
             <div class="mt-auto pt-4">
               <nav class="dashboard-nav">
                 <a href="settings.html" class="dashboard-nav-link">
@@ -277,13 +318,16 @@
           </div>
         </aside>
 
-        <!-- =================================================
+        <!-- =======================================
              MAIN CONTENT
-        ================================================== -->
+        ======================================== -->
 
         <main class="col-lg-10 dashboard-main">
           <div class="container-fluid py-4 px-3 px-lg-5">
-            <!-- Welcome -->
+            <!-- =====================================
+                 WELCOME
+            ====================================== -->
+
             <section class="dashboard-welcome mb-4">
               <div
                 class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
@@ -293,7 +337,8 @@
 
                   <h1 class="h3 fw-bold mb-2">
                     Good to see you,
-                    <span id="welcomeUserName">Promise</span>.
+                    <span id="welcomeUserName" data-user-name> Developer </span
+                    >.
                   </h1>
 
                   <p class="text-muted mb-0">
@@ -311,7 +356,10 @@
               </div>
             </section>
 
-            <!-- Quick action cards -->
+            <!-- =====================================
+                 QUICK ACTIONS
+            ====================================== -->
+
             <section class="mb-5">
               <div class="row g-3">
                 <div class="col-md-4">
@@ -364,7 +412,10 @@
               </div>
             </section>
 
-            <!-- Feed header -->
+            <!-- =====================================
+                 FEED
+            ====================================== -->
+
             <section>
               <div
                 class="d-flex justify-content-between align-items-center mb-3"
@@ -377,15 +428,19 @@
                   </p>
                 </div>
 
-                <button class="btn btn-light btn-sm" type="button">
+                <button
+                  class="btn btn-light btn-sm"
+                  type="button"
+                  id="feedSortButton"
+                >
                   Latest
                   <i class="bi bi-chevron-down ms-1"></i>
                 </button>
               </div>
 
-              <!-- ===============================
-                   POST CARD
-              ================================= -->
+              <!-- =================================
+                   POST
+              ================================== -->
 
               <article class="dashboard-post-card mb-3">
                 <div class="d-flex justify-content-between align-items-start">
@@ -399,7 +454,11 @@
                     </div>
                   </div>
 
-                  <button class="btn btn-light btn-sm" type="button">
+                  <button
+                    class="btn btn-light btn-sm post-menu-btn"
+                    type="button"
+                    aria-label="Post options"
+                  >
                     <i class="bi bi-three-dots"></i>
                   </button>
                 </div>
@@ -426,22 +485,34 @@
 
                 <div class="border-top pt-3">
                   <div class="d-flex gap-4">
-                    <button class="btn btn-sm btn-light">
+                    <button
+                      class="btn btn-sm btn-light post-action"
+                      data-action="like"
+                    >
                       <i class="bi bi-heart me-1"></i>
                       24
                     </button>
 
-                    <button class="btn btn-sm btn-light">
+                    <button
+                      class="btn btn-sm btn-light post-action"
+                      data-action="comment"
+                    >
                       <i class="bi bi-chat me-1"></i>
                       8
                     </button>
 
-                    <button class="btn btn-sm btn-light">
+                    <button
+                      class="btn btn-sm btn-light post-action"
+                      data-action="save"
+                    >
                       <i class="bi bi-bookmark me-1"></i>
                       Save
                     </button>
 
-                    <button class="btn btn-sm btn-light ms-auto">
+                    <button
+                      class="btn btn-sm btn-light ms-auto post-action"
+                      data-action="share"
+                    >
                       <i class="bi bi-share me-1"></i>
                       Share
                     </button>
@@ -449,9 +520,9 @@
                 </div>
               </article>
 
-              <!-- ===============================
+              <!-- =================================
                    PROJECT CARD
-              ================================= -->
+              ================================== -->
 
               <article class="dashboard-post-card mb-3">
                 <div class="d-flex justify-content-between align-items-start">
@@ -489,6 +560,7 @@
                   <button
                     class="btn btn-outline-primary btn-sm rounded-3"
                     type="button"
+                    id="viewProjectBtn"
                   >
                     View project
                   </button>
@@ -519,10 +591,28 @@
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- ==========================================
+         BOOTSTRAP
+    =========================================== -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Dashboard JS -->
-    <script src="./dashboard.js"></script>
+    <!-- ==========================================
+         CODECOLLAB UI
+    =========================================== -->
+
+    <script src="js/ui.js"></script>
+
+    <!-- ==========================================
+         CODECOLLAB AUTH
+    =========================================== -->
+
+    <script src="js/auth.js"></script>
+
+    <!-- ==========================================
+         DASHBOARD LOGIC
+    =========================================== -->
+
+    <script src="js/dashboard.js"></script>
   </body>
 </html>

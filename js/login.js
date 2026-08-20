@@ -1,96 +1,100 @@
+// ==========================================
+// CODECOLLAB LOGIN
+// login.js
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.querySelector("form");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const rememberInput = document.getElementById("remember");
-  const passwordToggle = document.querySelector(".password-toggle");
+  "use strict";
 
-  const USERS_KEY = "codecollabUsers";
-  const CURRENT_USER_KEY = "codecollabCurrentUser";
+  const form = document.getElementById("loginForm");
 
-  // ==========================================
-  // PASSWORD VISIBILITY
-  // ==========================================
+  if (!form) {
+    return;
+  }
 
-  passwordToggle?.addEventListener("click", () => {
-    const isPassword = passwordInput.type === "password";
-
-    passwordInput.type = isPassword ? "text" : "password";
-
-    passwordToggle.innerHTML = isPassword
-      ? '<i class="bi bi-eye-slash"></i>'
-      : '<i class="bi bi-eye"></i>';
-
-    passwordToggle.setAttribute(
-      "aria-label",
-      isPassword ? "Hide password" : "Show password",
-    );
-  });
-
-  // ==========================================
-  // LOGIN
-  // ==========================================
-
-  loginForm.addEventListener("submit", (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const emailInput = document.getElementById("email");
+
+    const passwordInput = document.getElementById("password");
+
+    const rememberInput = document.getElementById("remember");
+
     const email = emailInput.value.trim().toLowerCase();
+
     const password = passwordInput.value;
 
-    // ------------------------------------------
-    // Basic validation
-    // ------------------------------------------
+    const rememberMe = rememberInput?.checked || false;
+
+    // ==========================================
+    // VALIDATION
+    // ==========================================
 
     if (!email || !password) {
-      alert("Please enter your email and password.");
+      CodeCollabUI.toast(
+        "Please enter your email and password.",
+        "warning",
+        "Missing Information",
+      );
+
       return;
     }
 
-    // ------------------------------------------
-    // Get registered users
-    // ------------------------------------------
+    // ==========================================
+    // FIND USER
+    // ==========================================
 
-    const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+    const users = CodeCollabAuth.getUsers();
 
-    // ------------------------------------------
-    // Find user
-    // ------------------------------------------
-
-    const user = users.find((user) => user.email === email);
-
-    if (!user) {
-      alert("No account was found with this email.");
-      return;
-    }
-
-    // ------------------------------------------
-    // Check password
-    // ------------------------------------------
-
-    if (user.password !== password) {
-      alert("Incorrect password.");
-      return;
-    }
-
-    // ------------------------------------------
-    // Save current user session
-    // ------------------------------------------
-
-    localStorage.setItem(CURRENT_USER_KEY, user.id);
-
-    // ------------------------------------------
-    // Optional remember-me flag
-    // ------------------------------------------
-
-    localStorage.setItem(
-      "codecollabRememberMe",
-      rememberInput.checked ? "true" : "false",
+    const user = users.find(
+      (item) =>
+        item.email?.toLowerCase() === email && item.password === password,
     );
 
-    // ------------------------------------------
-    // Redirect to dashboard
-    // ------------------------------------------
+    // ==========================================
+    // INVALID LOGIN
+    // ==========================================
 
-    window.location.href = "dashboard.html";
+    if (!user) {
+      CodeCollabUI.toast(
+        "The email or password you entered is incorrect.",
+        "error",
+        "Login Failed",
+      );
+
+      return;
+    }
+
+    // ==========================================
+    // LOGIN
+    // ==========================================
+
+    const loggedIn = CodeCollabAuth.login(user.id, rememberMe);
+
+    if (!loggedIn) {
+      CodeCollabUI.toast(
+        "We couldn't start your session. Please try again.",
+        "error",
+        "Login Failed",
+      );
+
+      return;
+    }
+
+    // ==========================================
+    // SUCCESS
+    // ==========================================
+
+    CodeCollabUI.toast(
+      `Welcome back, ${user.firstName || "Developer"}!`,
+      "success",
+      "Login Successful",
+    );
+
+    // Give the toast a moment to appear
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 900);
   });
 });

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Saved | CodeCollab</title>
+
+    <!-- Bootstrap -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Font -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body data-auth="required">
+    <!-- Shared Header -->
+
+    <div id="app-header"></div>
+
+    <main class="saved-page py-5">
+      <div class="container">
+        <!-- =================================
+           HEADER
+      ================================== -->
+
+        <div class="mb-5">
+          <span
+            class="text-primary fw-semibold text-uppercase small letter-spacing-1"
+          >
+            Your Collection
+          </span>
+
+          <h1 class="display-6 fw-bold mt-3">Saved</h1>
+
+          <p class="text-muted">Keep useful projects and ideas close.</p>
+        </div>
+
+        <!-- =================================
+           FILTER
+      ================================== -->
+
+        <div class="d-flex gap-2 mb-4">
+          <button class="saved-filter active" data-filter="all">All</button>
+
+          <button class="saved-filter" data-filter="projects">Projects</button>
+
+          <button class="saved-filter" data-filter="posts">Posts</button>
+        </div>
+
+        <!-- =================================
+           RESULTS
+      ================================== -->
+
+        <div id="savedResults" class="row g-4"></div>
+
+        <!-- =================================
+           EMPTY
+      ================================== -->
+
+        <div id="savedEmpty" class="saved-empty text-center py-5 d-none">
+          <div class="saved-empty-icon">
+            <i class="bi bi-bookmark"></i>
+          </div>
+
+          <h2 class="h5 fw-bold mt-3">Nothing saved yet</h2>
+
+          <p class="text-muted">
+            Save projects and posts you want to come back to.
+          </p>
+
+          <a href="explore.html" class="btn btn-primary rounded-pill px-4">
+            Explore CodeCollab
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- UI -->
+
+    <script src="js/ui.js"></script>
+
+    <!-- Auth -->
+
+    <script src="js/auth.js"></script>
+
+    <!-- Header -->
+
+    <script src="components/header.js"></script>
+
+    <!-- Saved -->
+
+    <script src="js/saved.js"></script>
+  </body>
+</html>

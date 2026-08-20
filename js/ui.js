@@ -93,6 +93,12 @@
   // ==========================================
 
   function showToast(message, type = "success", title = "") {
+    if (!window.bootstrap || !window.bootstrap.Toast) {
+      console.error("CodeCollabUI: Bootstrap Toast is not available.");
+
+      return;
+    }
+
     const container = createUIContainer();
 
     const toastContainer = container.querySelector("#codecollabToastContainer");
@@ -191,6 +197,11 @@
     confirmClass = "btn-danger",
     onConfirm = null,
   } = {}) {
+    if (!window.bootstrap || !window.bootstrap.Modal) {
+      console.error("CodeCollabUI: Bootstrap Modal is not available.");
+      return;
+    }
+
     const container = createUIContainer();
 
     const modalElement = container.querySelector("#codecollabConfirmModal");
@@ -247,3 +258,19 @@
     confirm: showConfirm,
   };
 })();
+
+function saveItem(itemId) {
+  const saved = JSON.parse(localStorage.getItem("codecollabSaved")) || [];
+
+  if (!saved.includes(itemId)) {
+    saved.push(itemId);
+
+    localStorage.setItem("codecollabSaved", JSON.stringify(saved));
+
+    CodeCollabUI.toast("Saved successfully.", "success", "Saved");
+
+    return true;
+  }
+
+  return false;
+}
